@@ -1,0 +1,6 @@
+{
+  "name": "Talkokan Tourism",
+  "description": "Interactive Kokan tourism portal with smart trip planner, budget calculator, interactive Leaflet map, Malvani food hub, and admin management.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
