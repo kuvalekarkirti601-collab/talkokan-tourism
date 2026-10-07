@@ -1,215 +1,391 @@
-import React, { useState } from 'react';
-import { X, Send, CheckCircle2, Loader2, Phone, Mail, User, Calendar, MapPin, MessageSquare } from 'lucide-react';
-import { DistrictName } from '../types';
+import React, { useState } from "react";
+import {
+  X,
+  Send,
+  CheckCircle,
+  User,
+  Mail,
+  Phone,
+  Users,
+  MapPin,
+  Calendar,
+  MessageSquare,
+} from "lucide-react";
+import { supabase } from "../lib/supabase";
 
 interface EnquiryModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) => {
-  if (!isOpen) return null;
+const districts = [
+  "kankavli",
+  "Malvan",
+  "Sawantwadi",
+  "Dodamarg",
+  "kudal",
+  "Vaibhavwadi",
+  "Vengurla",
+  "Devgad",
+  "Whole kokan Belt"
+  ,
+];
 
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    numTravelers: 2,
-    travelDates: '',
-    preferredDistrict: 'Whole Kokan Belt' as DistrictName | 'Whole Kokan Belt',
-    message: ''
-  });
-
+const EnquiryModal: React.FC<EnquiryModalProps> = ({
+  isOpen,
+  onClose,
+}) => {
   const [submitting, setSubmitting] = useState(false);
   const [submittedSuccess, setSubmittedSuccess] = useState(false);
 
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    numTravelers: 1,
+    preferredDistrict: "whole kokan belt",
+    travelDates: "",
+    message: "",
+  });
+
+  if (!isOpen) return null;
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]:
+        name === "numTravelers" ? Number(value) : value,
+    }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (
+      !formData.name.trim() ||
+      !formData.email.trim() ||
+      !formData.message.trim()
+    ) {
+      alert("Please fill Name, Email and Message.");
+      return;
+    }
+
     setSubmitting(true);
 
-    try {
-      const res = await fetch('/api/enquiries', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
-      const data = await res.json();
-      if (res.ok) {
-        setSubmittedSuccess(true);
-      } else {
-        alert(data.error || 'Failed to submit enquiry');
-      }
-    } catch (err) {
-      console.error('Enquiry submit error:', err);
-      alert('Network error submitting enquiry.');
-    } finally {
-      setSubmitting(false);
+    const enquiryData = {
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      phone: formData.phone.trim() || null,
+      subject: null,
+      message: formData.message.trim(),
+      status: "new",
+      num_travelers: Number(formData.numTravelers) || 1,
+      travel_dates: formData.travelDates || "Flexible",
+      preferred_district:
+        formData.preferredDistrict || "Whole Kokan Belt",
+    };
+
+    console.log("Submitting enquiry:", enquiryData);
+
+    const { error } = await supabase
+      .from("enquiries")
+      .insert(enquiryData);
+
+    setSubmitting(false);
+
+    if (error) {
+      console.error("SUPABASE ENQUIRY ERROR:", error);
+      alert("Supabase Error: " + error.message);
+      return;
     }
+
+    console.log("ENQUIRY SAVED SUCCESSFULLY");
+
+    setSubmittedSuccess(true);
+  };
+
+  const handleClose = () => {
+    if (submitting) return;
+
+    setSubmittedSuccess(false);
+
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      numTravelers: 1,
+      preferredDistrict: "Whole Kokan Belt",
+      travelDates: "",
+      message: "",
+    });
+
+    onClose();
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-fadeIn">
-      <div className="relative w-full max-w-lg glass-panel text-white rounded-3xl shadow-2xl overflow-hidden border border-white/15 my-8 backdrop-blur-xl">
-        
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+      <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white shadow-2xl">
+
         {/* Header */}
-        <div className="p-6 bg-slate-950/70 text-white flex items-center justify-between border-b border-white/10 backdrop-blur-md">
+        <div className="sticky top-0 z-10 flex items-center justify-between border-b bg-white px-6 py-5">
           <div>
-            <span className="text-[10px] uppercase font-bold text-teal-300 tracking-wider">Talkokan Tourism Consultation</span>
-            <h3 className="font-serif-kokan text-xl font-bold text-white">Book Tour & Local Guide</h3>
+            <h2 className="text-2xl font-bold text-gray-900">
+              Plan Your Kokan Trip
+            </h2>
+            <p className="mt-1 text-sm text-gray-500">
+              Send us your enquiry and we’ll help you plan your journey.
+            </p>
           </div>
+
           <button
-            onClick={onClose}
-            className="p-2 rounded-full bg-white/10 text-slate-300 hover:text-white hover:bg-white/20 transition-all"
+            type="button"
+            onClick={handleClose}
+            disabled={submitting}
+            className="rounded-full p-2 text-gray-500 transition hover:bg-gray-100 hover:text-gray-800 disabled:opacity-50"
           >
-            <X className="w-5 h-5" />
+            <X size={24} />
           </button>
         </div>
 
-        {/* Body */}
-        <div className="p-6">
-          {submittedSuccess ? (
-            <div className="text-center py-8 space-y-4 animate-fadeIn">
-              <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 mx-auto flex items-center justify-center">
-                <CheckCircle2 className="w-10 h-10" />
-              </div>
-              <h4 className="font-serif-kokan text-2xl font-bold text-white">Enquiry Received!</h4>
-              <p className="text-xs text-slate-300 max-w-xs mx-auto leading-relaxed">
-                Thank you, <strong>{formData.name}</strong>. Our local Kokan trip coordinator will contact you via phone/email shortly with customized hotel & travel options.
-              </p>
-              <button
-                onClick={onClose}
-                className="mt-4 px-6 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-extrabold text-xs rounded-xl shadow-lg transition-colors"
-              >
-                Done
-              </button>
+        {/* Success */}
+        {submittedSuccess ? (
+          <div className="flex flex-col items-center justify-center px-6 py-16 text-center">
+            <div className="mb-5 flex h-20 w-20 items-center justify-center rounded-full bg-green-100">
+              <CheckCircle
+                size={44}
+                className="text-green-600"
+              />
             </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              
+
+            <h3 className="text-2xl font-bold text-gray-900">
+              Enquiry Submitted!
+            </h3>
+
+            <p className="mt-3 max-w-md text-gray-600">
+              Thank you for contacting us. Your Kokan travel
+              enquiry has been received successfully.
+            </p>
+
+            <button
+              type="button"
+              onClick={handleClose}
+              className="mt-7 rounded-xl bg-emerald-600 px-7 py-3 font-semibold text-white transition hover:bg-emerald-700"
+            >
+              Done
+            </button>
+          </div>
+        ) : (
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-5 p-6"
+          >
+            {/* Name + Email */}
+            <div className="grid gap-5 md:grid-cols-2">
+
               <div>
-                <label className="block text-xs font-bold text-slate-300 mb-1">Full Name *</label>
+                <label className="mb-2 block text-sm font-semibold text-gray-700">
+                  Full Name *
+                </label>
+
                 <div className="relative">
-                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                  <User
+                    size={18}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                  />
+
                   <input
                     type="text"
-                    required
+                    name="name"
                     value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="e.g. Ramesh Kulkarni"
-                    className="w-full pl-9 pr-3 py-2 bg-slate-950/80 border border-white/15 rounded-xl text-xs text-white placeholder-slate-400 focus:outline-none focus:border-amber-400"
+                    onChange={handleChange}
+                    placeholder="Enter your name"
+                    required
+                    className="w-full rounded-xl border border-gray-300 py-3 pl-10 pr-4 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
                   />
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-xs font-bold text-slate-300 mb-1">Email *</label>
-                  <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                    <input
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="ramesh@example.com"
-                      className="w-full pl-9 pr-3 py-2 bg-slate-950/80 border border-white/15 rounded-xl text-xs text-white placeholder-slate-400 focus:outline-none focus:border-amber-400"
-                    />
-                  </div>
-                </div>
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-gray-700">
+                  Email *
+                </label>
 
-                <div>
-                  <label className="block text-xs font-bold text-slate-300 mb-1">Phone Number</label>
-                  <div className="relative">
-                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                    <input
-                      type="text"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="+91 98200 12345"
-                      className="w-full pl-9 pr-3 py-2 bg-slate-950/80 border border-white/15 rounded-xl text-xs text-white placeholder-slate-400 focus:outline-none focus:border-amber-400"
-                    />
-                  </div>
+                <div className="relative">
+                  <Mail
+                    size={18}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                  />
+
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="you@example.com"
+                    required
+                    className="w-full rounded-xl border border-gray-300 py-3 pl-10 pr-4 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Phone + Travelers */}
+            <div className="grid gap-5 md:grid-cols-2">
+
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-gray-700">
+                  Phone Number
+                </label>
+
+                <div className="relative">
+                  <Phone
+                    size={18}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                  />
+
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="Enter phone number"
+                    className="w-full rounded-xl border border-gray-300 py-3 pl-10 pr-4 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+                  />
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-xs font-bold text-slate-300 mb-1">Travelers Count</label>
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-gray-700">
+                  Number of Travelers
+                </label>
+
+                <div className="relative">
+                  <Users
+                    size={18}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                  />
+
                   <input
                     type="number"
+                    name="numTravelers"
                     min="1"
-                    max="30"
+                    max="100"
                     value={formData.numTravelers}
-                    onChange={(e) => setFormData({ ...formData, numTravelers: parseInt(e.target.value) || 1 })}
-                    className="w-full px-3 py-2 bg-slate-950/80 border border-white/15 rounded-xl text-xs text-white focus:outline-none focus:border-amber-400"
+                    onChange={handleChange}
+                    className="w-full rounded-xl border border-gray-300 py-3 pl-10 pr-4 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
                   />
                 </div>
+              </div>
+            </div>
 
-                <div>
-                  <label className="block text-xs font-bold text-slate-300 mb-1">Preferred District</label>
+            {/* District + Date */}
+            <div className="grid gap-5 md:grid-cols-2">
+
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-gray-700">
+                  Preferred District
+                </label>
+
+                <div className="relative">
+                  <MapPin
+                    size={18}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                  />
+
                   <select
+                    name="preferredDistrict"
                     value={formData.preferredDistrict}
-                    onChange={(e) => setFormData({ ...formData, preferredDistrict: e.target.value as any })}
-                    className="w-full px-3 py-2 bg-slate-950/80 border border-white/15 rounded-xl text-xs text-white focus:outline-none focus:border-amber-400 font-medium"
+                    onChange={handleChange}
+                    className="w-full appearance-none rounded-xl border border-gray-300 bg-white py-3 pl-10 pr-4 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
                   >
-                    <option value="Whole Kokan Belt">Whole Kokan Belt</option>
-                    <option value="Sindhudurg">Sindhudurg (Scuba & Forts)</option>
-                    <option value="Ratnagiri">Ratnagiri (Ganpatipule & Velas)</option>
-                    <option value="Raigad">Raigad (Alibaug & Janjira)</option>
-                    <option value="Palghar">Palghar (Kelwa Beach)</option>
+                    {districts.map((district) => (
+                      <option
+                        key={district}
+                        value={district}
+                      >
+                        {district}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-300 mb-1">Travel Dates / Season</label>
+                <label className="mb-2 block text-sm font-semibold text-gray-700">
+                  Travel Dates
+                </label>
+
                 <div className="relative">
-                  <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                  <Calendar
+                    size={18}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                  />
+
                   <input
                     type="text"
+                    name="travelDates"
                     value={formData.travelDates}
-                    onChange={(e) => setFormData({ ...formData, travelDates: e.target.value })}
-                    placeholder="e.g. 15th to 18th October or Diwali holidays"
-                    className="w-full pl-9 pr-3 py-2 bg-slate-950/80 border border-white/15 rounded-xl text-xs text-white placeholder-slate-400 focus:outline-none focus:border-amber-400"
+                    onChange={handleChange}
+                    placeholder="e.g. 15-18 December"
+                    className="w-full rounded-xl border border-gray-300 py-3 pl-10 pr-4 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
                   />
                 </div>
               </div>
+            </div>
 
-              <div>
-                <label className="block text-xs font-bold text-slate-300 mb-1">Your Requirements / Message *</label>
+            {/* Message */}
+            <div>
+              <label className="mb-2 block text-sm font-semibold text-gray-700">
+                Your Message *
+              </label>
+
+              <div className="relative">
+                <MessageSquare
+                  size={18}
+                  className="absolute left-3 top-4 text-gray-400"
+                />
+
                 <textarea
-                  rows={3}
-                  required
+                  name="message"
                   value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="Describe what you want (e.g. Need beachside homestay, scuba session at Tarkarli & authentic Malvani food)..."
-                  className="w-full p-3 bg-slate-950/80 border border-white/15 rounded-xl text-xs text-white placeholder-slate-400 focus:outline-none focus:border-amber-400"
+                  onChange={handleChange}
+                  placeholder="Tell us about your trip requirements..."
+                  required
+                  rows={5}
+                  className="w-full resize-none rounded-xl border border-gray-300 py-3 pl-10 pr-4 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
                 />
               </div>
+            </div>
 
-              <button
-                type="submit"
-                disabled={submitting}
-                className="w-full py-3 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-extrabold text-xs rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2 disabled:opacity-50"
-              >
-                {submitting ? (
-                  <>
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    <span>Submitting Request...</span>
-                  </>
-                ) : (
-                  <>
-                    <Send className="w-4 h-4" />
-                    <span>Send Tour Enquiry</span>
-                  </>
-                )}
-              </button>
-
-            </form>
-          )}
-        </div>
-
+            {/* Submit */}
+            <button
+              type="submit"
+              disabled={submitting}
+              className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-3.5 font-semibold text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {submitting ? (
+                <>
+                  <span className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                  Submitting...
+                </>
+              ) : (
+                <>
+                  <Send size={18} />
+                  Submit Enquiry
+                </>
+              )}
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );
 };
+
+export default EnquiryModal;

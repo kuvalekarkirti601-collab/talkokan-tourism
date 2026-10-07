@@ -1,521 +1,1151 @@
 import { Destination, FoodItem, Festival, WeatherData } from '../types';
 
 export const INITIAL_DESTINATIONS: Destination[] = [
+  // =========================
+  // EXISTING SINDHUDURG
+  // =========================
+
   {
-    id: 'tarkarli-beach',
+    id: 'sindhudurg-tarkarli',
     name: 'Tarkarli Beach & Scuba Haven',
-    marathiName: 'तारकर्ली बीच',
+    marathiName: 'तारकर्ली समुद्रकिनारा',
     category: 'Beaches',
     district: 'Sindhudurg',
-    description: 'Pristine white sand beach famous for clear turquoise waters, scuba diving, and underwater coral reefs.',
-    longDescription: 'Tarkarli is a coastal village in Malvan, Sindhudurg known for its long, narrow stretch of white sand beach with unusually clear waters. On a clear day, one can see up to 20 feet deep into the seabed. It is Maharashtra’s premier scuba diving and snorkeling hub, where certified divers guide visitors through marine life near Sindhudurg Fort.',
-    bestTimeToVisit: 'October to May (Best underwater visibility)',
+    taluka: 'Malvan',
+    description:
+      'A beautiful white-sand beach famous for clear waters, water sports and scuba diving.',
+    longDescription:
+      'Tarkarli is one of the most popular coastal destinations in Sindhudurg, known for its clean beach, turquoise water, scuba diving, snorkeling and peaceful surroundings.',
+    bestTimeToVisit: 'October to May',
     seasonBadge: 'Summer Water Sports',
-    coordinates: { lat: 16.0353, lng: 73.4682 },
+    coordinates: { lat: 16.0397, lng: 73.4933 },
     images: [
-      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e',
     ],
-    highlights: ['Scuba Diving & Snorkeling', 'Karli River Backwaters', 'Houseboat Stay', 'Dolphin Safari'],
-    travelTips: 'Book scuba sessions early in the morning around 8:00 AM when the sea is calmest and visibility is crystal clear.',
-    distanceKm: { mumbai: 530, pune: 390 },
-    estimatedCostPerDay: 3500,
-    popularFoodNearby: ['Malvani Surmai Thali', 'Sol Kadhi', 'Bangda Fry'],
-    rating: 4.9,
-    featured: true
+    highlights: [
+      'Scuba Diving',
+      'Snorkeling',
+      'Water Sports',
+      'Beautiful Beach',
+    ],
+    travelTips:
+      'Carry sunscreen, sunglasses and comfortable beachwear. Book water activities from authorized operators.',
+    distanceKm: { mumbai: 490, pune: 390 },
+    estimatedCostPerDay: 1800,
+    popularFoodNearby: ['Malvani Fish Thali', 'Sol Kadhi', 'Kombdi Vade'],
+    rating: 4.8,
+    featured: true,
   },
+
   {
     id: 'sindhudurg-fort',
     name: 'Sindhudurg Sea Fort',
     marathiName: 'सिंधुदुर्ग किल्ला',
     category: 'Sea Forts',
     district: 'Sindhudurg',
-    description: 'Imposing 17th-century island sea fort built by Chhatrapati Shivaji Maharaj using 4000 maunds of iron casting.',
-    longDescription: 'Constructed on Kurte Island in 1664, Sindhudurg Fort is an architectural marvel of Maratha naval power. Spanning over 48 acres, its massive 3-kilometer outer wall stands strong against ocean surges. It houses Shivaji Maharaj’s handprint and footprint preserved in lime, three freshwater wells surrounded by salty sea, and a unique temple dedicated to the Maratha ruler.',
-    bestTimeToVisit: 'October to May (Ferries closed during heavy monsoons)',
+    taluka: 'Malvan',
+    description:
+      'Historic sea fort built by Chhatrapati Shivaji Maharaj in the Arabian Sea.',
+    longDescription:
+      'Sindhudurg Fort is a magnificent sea fort near Malvan. Built by Chhatrapati Shivaji Maharaj, it represents Maratha naval strength and coastal architecture.',
+    bestTimeToVisit: 'October to March',
     seasonBadge: 'Winter Bliss',
-    coordinates: { lat: 16.0592, lng: 73.4566 },
+    coordinates: { lat: 16.0418, lng: 73.4626 },
     images: [
-      'https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1595658658481-d53d3f999875',
     ],
-    highlights: ['48-Acre Fort Perimeter', 'Shivaji Maharaj Temple', 'Hidden Fort Entrance (Ranbaat)', 'Freshwater Ocean Wells'],
-    travelTips: 'Reach Malvan Jetty by 9 AM to take the local ferry to the island fort. Wear comfortable footwear for walking on ramparts.',
-    distanceKm: { mumbai: 525, pune: 385 },
-    estimatedCostPerDay: 2200,
-    popularFoodNearby: ['Kombdi Vade', 'Mori (Shark) Curry', 'Cashew Curry'],
+    highlights: [
+      'Historic Fort',
+      'Boat Ride',
+      'Arabian Sea Views',
+      'Maratha History',
+    ],
+    travelTips:
+      'Take a boat from Malvan jetty. Avoid visiting during rough sea conditions.',
+    distanceKm: { mumbai: 490, pune: 390 },
+    estimatedCostPerDay: 1600,
+    popularFoodNearby: ['Malvani Fish Curry', 'Sol Kadhi'],
     rating: 4.8,
-    featured: true
+    featured: true,
   },
+
   {
-    id: 'ganpatipule-temple',
-    name: 'Ganpatipule Beach & Temple',
-    marathiName: 'गणपतीपुळे',
-    category: 'Temples',
-    district: 'Ratnagiri',
-    description: '400-year-old self-manifested (Swayambhu) Ganesha idol residing right on the tranquil coastline of Ratnagiri.',
-    longDescription: 'Ganpatipule is one of the "Ashta Dwara Devatas" (Eight Gate Guardians) of India. The idol of Lord Ganesha faces west towards the Arabian ocean, guarding the western coast. The pristine surrounding beach is lined with coconut groves, mangroves, and red laterite soil roads, making it a sacred yet rejuvenating getaway.',
-    bestTimeToVisit: 'September to March',
-    seasonBadge: 'All Season',
-    coordinates: { lat: 17.1447, lng: 73.2687 },
-    images: [
-      'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80'
-    ],
-    highlights: ['Swayambhu Ganpati Darshan', 'Sunset Beach Promenade', 'Malgund Prachin Konkan Museum', 'Alphonso Mango Orchards nearby'],
-    travelTips: 'Combine your visit with Malgund village nearby, the birthplace of famous Marathi poet Keshavsut.',
-    distanceKm: { mumbai: 330, pune: 290 },
-    estimatedCostPerDay: 2800,
-    popularFoodNearby: ['Modak Prasad', 'Ratnagiri Alphonso Juice', 'Sol Kadhi Thali'],
-    rating: 4.7,
-    featured: true
-  },
-  {
-    id: 'murud-janjira-fort',
-    name: 'Murud Janjira Sea Fort',
-    marathiName: 'मुरुड जंजिरा',
-    category: 'Sea Forts',
-    district: 'Raigad',
-    description: 'Impenetrable island fortress of the Siddis surrounded by the sea, famous for giant cannons like Kalal Bangadi.',
-    longDescription: 'Murud Janjira stands undefeated in history, having survived attacks by the Marathas, British, and Portuguese. Accessible only by sailboat from Rajapuri jetty, the fort features 19 rounded bastions, royal palaces, fresh water lakes, and historical cannons including the legendary third largest cannon in India, Kalal Bangadi.',
-    bestTimeToVisit: 'October to April',
-    seasonBadge: 'Winter Bliss',
-    coordinates: { lat: 18.2987, lng: 72.8622 },
-    images: [
-      'https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1200&q=80'
-    ],
-    highlights: ['Sailboat Ocean Access', 'Kalal Bangadi Cannon', 'Siddi Palace Architecture', 'Murud Beach Watersports'],
-    travelTips: 'Sailboats depend on ocean tides. Ensure you depart Rajapuri jetty before 4:00 PM for the last return boat.',
-    distanceKm: { mumbai: 160, pune: 170 },
-    estimatedCostPerDay: 2500,
-    popularFoodNearby: ['Raigad Style Fish Curry', 'Prawns Koliwada', 'Tender Coconut Water'],
-    rating: 4.8,
-    featured: true
-  },
-  {
-    id: 'amboli-ghat',
+    id: 'amboli',
     name: 'Amboli Hill Station & Waterfalls',
     marathiName: 'आंबोली घाट',
     category: 'Hill Stations',
     district: 'Sindhudurg',
-    description: 'Eco-hotspot hill station nestled in the Sahyadri mountains with misty rain, lush flora, and roaring waterfalls.',
-    longDescription: 'Known as the "Cherrapunji of Maharashtra" due to its torrential monsoon rains, Amboli sits at an altitude of 690 meters in the Western Ghats. It is world-renowned for its endemic amphibians, vibrant bioluminescent fungi during rains, Amboli Waterfall, Shirgaonkar Point, and panoramic views of Sahyadri valleys.',
-    bestTimeToVisit: 'June to October (Monsoon paradise)',
+    taluka: 'Sawantwadi',
+    description:
+      'A lush Western Ghats hill station famous for monsoon waterfalls and misty landscapes.',
+    longDescription:
+      'Amboli is one of Maharashtra’s most scenic hill stations. During monsoon, the region becomes extremely green and numerous waterfalls appear along the Sahyadri ranges.',
+    bestTimeToVisit: 'June to February',
     seasonBadge: 'Monsoon Magic',
-    coordinates: { lat: 15.9613, lng: 73.9984 },
+    coordinates: { lat: 15.9566, lng: 74.0025 },
     images: [
-      'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1500534623283-312aade485b7',
     ],
-    highlights: ['Amboli Main Waterfall', 'Hiranyakeshi River Origin Temple', 'Kavleshet Valley Echo Point', 'Night Herping & Biodiversity'],
-    travelTips: 'Carry raincoat and non-slip trekking boots. Monsoon fog can drop visibility on the ghat roads.',
-    distanceKm: { mumbai: 490, pune: 350 },
-    estimatedCostPerDay: 2000,
-    popularFoodNearby: ['Gharmuti Koli / Malvani Bhakri', 'Hot Kanda Bhajji with Chai', 'Pitla Bhakri'],
+    highlights: [
+      'Waterfalls',
+      'Western Ghats',
+      'Misty Roads',
+      'Nature Photography',
+    ],
+    travelTips:
+      'Drive carefully during monsoon because roads can become slippery and foggy.',
+    distanceKm: { mumbai: 475, pune: 390 },
+    estimatedCostPerDay: 1500,
+    popularFoodNearby: ['Kanda Bhaji', 'Misal', 'Hot Tea'],
     rating: 4.7,
-    featured: true
+    featured: true,
   },
+
   {
-    id: 'velas-turtle-beach',
-    name: 'Velas Turtle Nesting Village',
-    marathiName: 'वेळास कासव ग्राम',
-    category: 'Wildlife',
-    district: 'Ratnagiri',
-    description: 'Eco-tourism village famous for the annual Olive Ridley Sea Turtle Festival and baby hatchlings released into ocean.',
-    longDescription: 'Velas is a quiet coastal hamlet in Ratnagiri that has embraced community-driven eco-tourism. Every spring between February and April, hundreds of endangered Olive Ridley sea turtle hatchlings break out of their sandy nests and waddle towards the Arabian Sea under local conservation monitoring.',
-    bestTimeToVisit: 'February to April (Turtle Festival)',
-    seasonBadge: 'Winter Bliss',
-    coordinates: { lat: 17.9587, lng: 73.0336 },
-    images: [
-      'https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80'
-    ],
-    highlights: ['Olive Ridley Hatchling Release', 'Traditional Village Homestays', 'Bankot Fort Exploration', 'Serene Beach Walk'],
-    travelTips: 'Stay in a village homestay to support the local conservationists and get morning 6:30 AM nest inspection updates.',
-    distanceKm: { mumbai: 220, pune: 190 },
-    estimatedCostPerDay: 1800,
-    popularFoodNearby: ['Traditional Veg Kokani Thali', 'Ukadiche Modak', 'Sol Kadhi'],
-    rating: 4.9,
-    featured: true
-  },
-  {
-    id: 'devbagh-sangam',
+    id: 'devbagh',
     name: 'Devbagh Sangam & Tsunami Island',
     marathiName: 'देवबाग संगम',
     category: 'Beaches',
     district: 'Sindhudurg',
-    description: 'A thin strip of land flanked by Karli river backwaters on one side and the surging Arabian ocean on the other.',
-    longDescription: 'Devbagh is the southern extension of Tarkarli where the Karli River merges with the Arabian ocean in a dramatic sangam (confluence). Tsunami Island, a shallow sandbar in the middle of the river backwaters, offers jet skiing, banana rides, and fresh grilled seafood served directly in knee-deep water.',
+    taluka: 'Malvan',
+    description:
+      'A scenic coastal area where the Karli River meets the Arabian Sea.',
+    longDescription:
+      'Devbagh is famous for its scenic river-sea meeting point, boat rides and nearby Tsunami Island. It is a peaceful destination for nature lovers.',
     bestTimeToVisit: 'October to May',
     seasonBadge: 'Summer Water Sports',
-    coordinates: { lat: 15.9912, lng: 73.4912 },
+    coordinates: { lat: 16.0202, lng: 73.4665 },
     images: [
-      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57',
     ],
-    highlights: ['River & Ocean Sangam', 'Tsunami Island Sandbar', 'Parasailing & Jet Skiing', 'Golden Beach Sunset'],
-    travelTips: 'Take a early morning river cruise boat from Devbagh jetty to spot playful pink and grey dolphins.',
-    distanceKm: { mumbai: 535, pune: 395 },
-    estimatedCostPerDay: 3200,
-    popularFoodNearby: ['Crab Masala', 'Devbagh Prawns Curry', 'Tender Coconut Shakes'],
-    rating: 4.8
+    highlights: [
+      'River-Sea Sangam',
+      'Boat Ride',
+      'Tsunami Island',
+      'Sunset',
+    ],
+    travelTips:
+      'Check local boat timings before planning your visit to Tsunami Island.',
+    distanceKm: { mumbai: 495, pune: 395 },
+    estimatedCostPerDay: 1700,
+    popularFoodNearby: ['Fresh Fish', 'Sol Kadhi', 'Malvani Thali'],
+    rating: 4.7,
   },
+
   {
-    id: 'vijaydurg-fort',
+    id: 'vijaydurg',
     name: 'Vijaydurg Marine Fort',
     marathiName: 'विजयदुर्ग किल्ला',
     category: 'Sea Forts',
     district: 'Sindhudurg',
-    description: 'Oldest fort in Sindhudurg built during the Shilahara dynasty and fortified by Shivaji Maharaj with underwater walls.',
-    longDescription: 'Vijaydurg (Victory Fort) is surrounded by ocean on three sides. It is famous for Maratha admiral Kanhoji Angre’s naval base and an ancient 500-meter long submerged wall built 10 meters under the sea to destroy enemy warships venturing near the coast.',
+    taluka: 'Devgad',
+    description:
+      'Historic coastal fort surrounded by the Arabian Sea.',
+    longDescription:
+      'Vijaydurg is one of the strongest sea forts on the Konkan coast and has an important place in Maratha naval history.',
     bestTimeToVisit: 'October to March',
     seasonBadge: 'Winter Bliss',
-    coordinates: { lat: 16.5583, lng: 73.3328 },
+    coordinates: { lat: 16.5574, lng: 73.3367 },
     images: [
-      'https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1595658658481-d53d3f999875',
     ],
-    highlights: ['Submerged Ocean Naval Wall', 'Underground Escape Tunnel', 'Helium Gas Discovery Site', 'Maratha Dockyard Remains'],
-    travelTips: 'Hire a government approved fort guide near the entrance gate to uncover historical Maratha military secrets.',
-    distanceKm: { mumbai: 420, pune: 340 },
-    estimatedCostPerDay: 2100,
-    popularFoodNearby: ['Vijaydug Surmai Fry', 'Kombdi Vade', 'Sol Kadhi'],
-    rating: 4.6
-  },
-  {
-    id: 'alibaug-varsoli-beach',
-    name: 'Alibaug & Varsoli Beach',
-    marathiName: 'अलिबाग वरसोली बीच',
-    category: 'Beaches',
-    district: 'Raigad',
-    description: 'Popular weekend coastal retreat near Mumbai with black sand beaches, watersports, and Kolaba Fort.',
-    longDescription: 'Alibaug is the northern gateway to Kokan tourism, accessible via a short speedboat ride from Gateway of India to Mandwa Jetty. Varsoli beach offers calm waters, cypress trees, and jet skiing, while Kolaba Fort sits 1 km inside the sea and can be walked to during low tide.',
-    bestTimeToVisit: 'September to May',
-    seasonBadge: 'All Season',
-    coordinates: { lat: 18.6414, lng: 72.8722 },
-    images: [
-      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1200&q=80'
+    highlights: [
+      'Historic Fort',
+      'Sea Views',
+      'Maratha History',
+      'Coastal Architecture',
     ],
-    highlights: ['Walk to Kolaba Fort at Low Tide', 'Speedboat from Mumbai', 'Varsoli Watersports', 'Fresh Seafood Stalls'],
-    travelTips: 'Check tide schedules at Alibaug beach before walking to Kolaba Fort to avoid high tide traps.',
-    distanceKm: { mumbai: 95, pune: 140 },
-    estimatedCostPerDay: 3000,
-    popularFoodNearby: ['Alibaugi Crab Curry', 'Popat / Pomfret Tawa Fry', 'Poha & Chai'],
-    rating: 4.5
+    travelTips:
+      'Wear comfortable shoes because you will walk around the fort area.',
+    distanceKm: { mumbai: 440, pune: 370 },
+    estimatedCostPerDay: 1500,
+    popularFoodNearby: ['Malvani Fish Curry', 'Sol Kadhi'],
+    rating: 4.7,
   },
+
   {
-    id: 'guhagar-beach',
-    name: 'Guhagar White Sand Beach',
-    marathiName: 'गुहागर',
-    category: 'Beaches',
-    district: 'Ratnagiri',
-    description: 'Clean, untouched 6 km crescent white sand beach flanked by betel nut (supari) and coconut plantations.',
-    longDescription: 'Guhagar lies between the Vashisthi River and the Jaigad Creek. It is revered for its peaceful atmosphere, ancient Vyaneshwar Temple, Durga Devi Temple, and vast betel nut groves. The beach is safe for long evening walks and family picnics.',
-    bestTimeToVisit: 'October to April',
-    seasonBadge: 'All Season',
-    coordinates: { lat: 17.4812, lng: 73.1983 },
-    images: [
-      'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80'
-    ],
-    highlights: ['6 km Pristine Sand Shore', 'Vyashwar Shiva Temple', 'Betel Nut (Supari) Groves', 'Sunset Point'],
-    travelTips: 'Enjoy authentic Brahmanical Kokanastha vegetarian thali or Malvani seafood at local home mess (Khanaval).',
-    distanceKm: { mumbai: 290, pune: 230 },
-    estimatedCostPerDay: 2200,
-    popularFoodNearby: ['Kaju Usal', 'Ghavane with Coconut Chutney', 'Sol Kadhi'],
-    rating: 4.7
-  },
-  {
-    id: 'kunkeshwar-temple-beach',
+    id: 'kunkeshwar',
     name: 'Kunkeshwar Temple & Beach',
-    marathiName: 'कुणकेश्वर',
+    marathiName: 'कुणकेश्वर मंदिर',
     category: 'Temples',
     district: 'Sindhudurg',
-    description: 'Magnificent 11th-century Chola-style stone Shiva temple right on the ocean shoreline, dubbed "Kashi of South Kokan".',
-    longDescription: 'Built in 1100 AD, Kunkeshwar Temple is an architectural gem made of laterite stone standing on a elevated seashore. Legend says a Muslim sailor built it after surviving a terrible shipwreck nearby. The temple overlooks a clean, uncrowded beach surrounded by mango orchards.',
-    bestTimeToVisit: 'October to March (Grand celebration during Mahashivratri)',
+    taluka: 'Devgad',
+    description:
+      'Ancient Shiva temple located beside a beautiful Arabian Sea beach.',
+    longDescription:
+      'Kunkeshwar is a peaceful pilgrimage destination where the historic Shiva temple stands beside the Arabian Sea, creating a unique spiritual and coastal experience.',
+    bestTimeToVisit: 'October to March',
     seasonBadge: 'Winter Bliss',
-    coordinates: { lat: 16.3338, lng: 73.3879 },
+    coordinates: { lat: 16.2862, lng: 73.3908 },
     images: [
-      'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1604608672516-f1b9a2f3b7b4',
     ],
-    highlights: ['Seaside Stone Shiva Temple', 'Mahashivratri Fair', 'Devgad Alphonso Mango Orchards', 'Calm Swimming Beach'],
-    travelTips: 'Visit Devgad Fort and Alphonso mango packing units located just 5 km from Kunkeshwar in summer (March-May).',
-    distanceKm: { mumbai: 470, pune: 370 },
-    estimatedCostPerDay: 2100,
-    popularFoodNearby: ['Devgad Mango Halwa', 'Surmai Tawa Fry', 'Amba Poli'],
-    rating: 4.8
+    highlights: [
+      'Ancient Temple',
+      'Beach',
+      'Sunrise',
+      'Spiritual Experience',
+    ],
+    travelTips:
+      'Visit early morning for a peaceful temple and beach experience.',
+    distanceKm: { mumbai: 455, pune: 370 },
+    estimatedCostPerDay: 1400,
+    popularFoodNearby: ['Ghavane', 'Sol Kadhi', 'Fish Curry'],
+    rating: 4.6,
   },
+
+  // =========================
+  // KANKAVLI TALUKA
+  // =========================
+
   {
-    id: 'harihareshwar-beach',
-    name: 'Harihareshwar & Shrivardhan',
-    marathiName: 'हरिहरेश्वर',
+    id: 'kankavli-nadivade',
+    name: 'Nadivade Waterfall',
+    marathiName: 'नादिवडे धबधबा',
+    category: 'Waterfalls',
+    district: 'Sindhudurg',
+    taluka: 'Kankavli',
+    description:
+      'A peaceful seasonal waterfall surrounded by greenery near Kankavli.',
+    longDescription:
+      'Nadivade and the surrounding Kankavli region become especially scenic during the monsoon season, with greenery, streams and small waterfalls.',
+    bestTimeToVisit: 'June to September',
+    seasonBadge: 'Monsoon Magic',
+    coordinates: { lat: 16.26, lng: 73.68 },
+    images: [
+      'https://images.unsplash.com/photo-1433086966358-54859d0ed716',
+    ],
+    highlights: [
+      'Monsoon Waterfall',
+      'Greenery',
+      'Nature Photography',
+      'Peaceful Location',
+    ],
+    travelTips:
+      'Wear proper footwear and avoid slippery rocks during heavy rain.',
+    distanceKm: { mumbai: 470, pune: 390 },
+    estimatedCostPerDay: 1000,
+    popularFoodNearby: ['Ghavane', 'Sol Kadhi'],
+    rating: 4.4,
+  },
+
+  {
+    id: 'kankavli-kumbhavade',
+    name: 'Kumbhavade Waterfall',
+    marathiName: 'कुंभवडे धबधबा',
+    category: 'Waterfalls',
+    district: 'Sindhudurg',
+    taluka: 'Kankavli',
+    description:
+      'A green monsoon destination surrounded by the Sahyadri landscape.',
+    longDescription:
+      'The Kankavli region offers several seasonal streams and waterfalls during monsoon, making it ideal for short nature trips.',
+    bestTimeToVisit: 'June to September',
+    seasonBadge: 'Monsoon Magic',
+    coordinates: { lat: 16.28, lng: 73.65 },
+    images: [
+      'https://images.unsplash.com/photo-1511497584788-876760111969',
+    ],
+    highlights: [
+      'Waterfall',
+      'Forest',
+      'Monsoon',
+      'Photography',
+    ],
+    travelTips:
+      'Check local road conditions before travelling during heavy rainfall.',
+    distanceKm: { mumbai: 475, pune: 395 },
+    estimatedCostPerDay: 1000,
+    popularFoodNearby: ['Malvani Thali', 'Sol Kadhi'],
+    rating: 4.3,
+  },
+
+  {
+    id: 'kankavli-kasarda',
+    name: 'Kasarda Ghat',
+    marathiName: 'कासार्डा घाट',
+    category: 'Viewpoints',
+    district: 'Sindhudurg',
+    taluka: 'Kankavli',
+    description:
+      'A scenic ghat route offering beautiful Sahyadri views.',
+    longDescription:
+      'Kasarda Ghat connects the Konkan region with the interior and offers beautiful green landscapes, especially during the monsoon.',
+    bestTimeToVisit: 'June to February',
+    seasonBadge: 'Monsoon Magic',
+    coordinates: { lat: 16.35, lng: 73.67 },
+    images: [
+      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b',
+    ],
+    highlights: [
+      'Mountain Views',
+      'Monsoon Greenery',
+      'Road Trip',
+      'Photography',
+    ],
+    travelTips:
+      'Drive slowly around bends and avoid stopping at unsafe road edges.',
+    distanceKm: { mumbai: 470, pune: 390 },
+    estimatedCostPerDay: 1000,
+    popularFoodNearby: ['Tea', 'Bhaji', 'Ghavane'],
+    rating: 4.5,
+  },
+
+  // =========================
+  // KUDAL TALUKA
+  // =========================
+
+  {
+    id: 'kudal-nerur',
+    name: 'Nerurpar Temple & Nature',
+    marathiName: 'नेरूरपर मंदिर',
     category: 'Temples',
-    district: 'Raigad',
-    description: 'Revered as "Dakshin Kashi" surrounded by four holy hills: Harihareshwar, Harshinagiri, Bramhagiri, and Kalagiri.',
-    longDescription: 'Harihareshwar is famous for its rocky cliff pradakshina (circumambulation path) carved naturally by ocean wave erosion. The temple complex dates back to Maratha Peshwas. Nearby Shrivardhan beach offers calm black sand waters and water sports.',
-    bestTimeToVisit: 'September to April',
+    district: 'Sindhudurg',
+    taluka: 'Kudal',
+    description:
+      'A peaceful cultural and natural destination around Nerur.',
+    longDescription:
+      'Nerur and nearby villages showcase traditional Konkan culture, temples, greenery and peaceful rural landscapes.',
+    bestTimeToVisit: 'October to March',
     seasonBadge: 'All Season',
-    coordinates: { lat: 17.9942, lng: 73.0222 },
+    coordinates: { lat: 16.08, lng: 73.69 },
     images: [
-      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1548013146-72479768bada',
     ],
-    highlights: ['Natural Rocky Pradakshina Path', 'Harihareshwar Shiva Temple', 'Shrivardhan Speedboats', 'Bagmandla Ferry to Bankot'],
-    travelTips: 'The cliff pradakshina route is accessible only during LOW TIDE. Do not attempt during rising ocean tides.',
-    distanceKm: { mumbai: 200, pune: 170 },
-    estimatedCostPerDay: 2400,
-    popularFoodNearby: ['Surmai Thali', 'Ukadiche Modak', 'Sol Kadhi'],
-    rating: 4.7
+    highlights: [
+      'Temple',
+      'Village Culture',
+      'Greenery',
+      'Photography',
+    ],
+    travelTips:
+      'Respect local customs when visiting temples and village areas.',
+    distanceKm: { mumbai: 485, pune: 400 },
+    estimatedCostPerDay: 1000,
+    popularFoodNearby: ['Ghavane', 'Usal', 'Sol Kadhi'],
+    rating: 4.3,
   },
+
   {
-    id: 'dapoli-murud-beach',
-    name: 'Dapoli & Murud Harnai Beach',
-    marathiName: 'दापोली',
-    category: 'Beaches',
-    district: 'Ratnagiri',
-    description: 'Mini-Mahabaleshwar of Kokan with cool climate, hot water springs at Unhavare, and Harnai live fish auction at sea.',
-    longDescription: 'Dapoli is a elevated town surrounded by dense forests and beaches. Murud-Dapoli beach is famous for water sports, dolphin cruises, and the daily afternoon fish auction right on Harnai sea beach where hundreds of colorful fishing trawlers land.',
+    id: 'kudal-tillari-view',
+    name: 'Tillari Valley View',
+    marathiName: 'तिलारी खोरे',
+    category: 'Viewpoints',
+    district: 'Sindhudurg',
+    taluka: 'Kudal',
+    description:
+      'Scenic valley landscapes with lush Sahyadri greenery.',
+    longDescription:
+      'The Tillari region around northern Sindhudurg provides beautiful views of forests, valleys and the Western Ghats.',
+    bestTimeToVisit: 'June to February',
+    seasonBadge: 'Monsoon Magic',
+    coordinates: { lat: 15.98, lng: 74.08 },
+    images: [
+      'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee',
+    ],
+    highlights: [
+      'Valley Views',
+      'Western Ghats',
+      'Greenery',
+      'Road Trip',
+    ],
+    travelTips:
+      'Carry water and avoid isolated trails after sunset.',
+    distanceKm: { mumbai: 500, pune: 420 },
+    estimatedCostPerDay: 1100,
+    popularFoodNearby: ['Local Thali', 'Tea', 'Bhaji'],
+    rating: 4.5,
+  },
+
+  // =========================
+  // MALVAN TALUKA
+  // =========================
+
+  {
+    id: 'malvan-rock-garden',
+    name: 'Malvan Rock Garden',
+    marathiName: 'मालवण रॉक गार्डन',
+    category: 'Viewpoints',
+    district: 'Sindhudurg',
+    taluka: 'Malvan',
+    description:
+      'A scenic rocky coastal garden overlooking the Arabian Sea.',
+    longDescription:
+      'Malvan Rock Garden is popular for sunset views, sea breeze and its rocky coastline.',
     bestTimeToVisit: 'October to May',
     seasonBadge: 'All Season',
-    coordinates: { lat: 17.7554, lng: 73.1878 },
+    coordinates: { lat: 16.058, lng: 73.471 },
     images: [
-      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e',
     ],
-    highlights: ['Harnai Beach Daily Fish Auction', 'Unhavare Natural Sulfur Springs', 'Suvarnadurg Sea Fort View', 'Dolphin Watching'],
-    travelTips: 'Be at Harnai beach by 4:00 PM to witness the vibrant sea fish auction directly from Maratha style boats.',
-    distanceKm: { mumbai: 230, pune: 180 },
-    estimatedCostPerDay: 2600,
-    popularFoodNearby: ['Fresh Harvested Prawns Fry', 'Sol Kadhi', 'Kombdi Vade'],
-    rating: 4.7
+    highlights: [
+      'Sunset',
+      'Sea View',
+      'Photography',
+      'Rocky Coast',
+    ],
+    travelTips:
+      'Wear comfortable footwear and be careful near wet rocks.',
+    distanceKm: { mumbai: 490, pune: 390 },
+    estimatedCostPerDay: 1200,
+    popularFoodNearby: ['Fish Fry', 'Sol Kadhi'],
+    rating: 4.5,
   },
+
+  {
+    id: 'malvan-chivla',
+    name: 'Chivla Beach',
+    marathiName: 'चिवला बीच',
+    category: 'Beaches',
+    district: 'Sindhudurg',
+    taluka: 'Malvan',
+    description:
+      'A peaceful beach near Malvan town.',
+    longDescription:
+      'Chivla Beach is a relatively quiet coastal destination with beautiful sunsets and a relaxed atmosphere.',
+    bestTimeToVisit: 'October to May',
+    seasonBadge: 'All Season',
+    coordinates: { lat: 16.064, lng: 73.475 },
+    images: [
+      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e',
+    ],
+    highlights: [
+      'Sunset',
+      'Beach Walk',
+      'Photography',
+      'Peaceful Atmosphere',
+    ],
+    travelTips:
+      'Avoid swimming in rough sea conditions.',
+    distanceKm: { mumbai: 490, pune: 390 },
+    estimatedCostPerDay: 1200,
+    popularFoodNearby: ['Malvani Fish Thali', 'Sol Kadhi'],
+    rating: 4.6,
+  },
+
+  {
+    id: 'malvan-backwaters',
+    name: 'Tarkarli Backwaters',
+    marathiName: 'तारकर्ली बॅकवॉटर',
+    category: 'Backwaters',
+    district: 'Sindhudurg',
+    taluka: 'Malvan',
+    description:
+      'Peaceful waterways surrounded by coconut trees and Konkan greenery.',
+    longDescription:
+      'The Tarkarli backwater region offers a calmer side of Sindhudurg, with boating, greenery and beautiful village landscapes.',
+    bestTimeToVisit: 'October to May',
+    seasonBadge: 'All Season',
+    coordinates: { lat: 16.025, lng: 73.49 },
+    images: [
+      'https://images.unsplash.com/photo-1470770841072-f978cf4d019e',
+    ],
+    highlights: [
+      'Backwaters',
+      'Boating',
+      'Coconut Trees',
+      'Nature',
+    ],
+    travelTips:
+      'Choose authorized local boating services.',
+    distanceKm: { mumbai: 495, pune: 395 },
+    estimatedCostPerDay: 1500,
+    popularFoodNearby: ['Fish Curry', 'Sol Kadhi'],
+    rating: 4.6,
+  },
+
+  // =========================
+  // SAWANTWADI TALUKA
+  // =========================
+
+  {
+    id: 'sawantwadi-moti-talao',
+    name: 'Moti Talao',
+    marathiName: 'मोती तलाव',
+    category: 'Lakes',
+    district: 'Sindhudurg',
+    taluka: 'Sawantwadi',
+    description:
+      'A beautiful lake located in the heart of Sawantwadi.',
+    longDescription:
+      'Moti Talao is a popular landmark of Sawantwadi and provides a peaceful place to enjoy the town’s cultural atmosphere.',
+    bestTimeToVisit: 'October to March',
+    seasonBadge: 'All Season',
+    coordinates: { lat: 15.905, lng: 73.82 },
+    images: [
+      'https://images.unsplash.com/photo-1501785888041-af3ef285b470',
+    ],
+    highlights: [
+      'Lake',
+      'Sawantwadi Town',
+      'Evening Walk',
+      'Photography',
+    ],
+    travelTips:
+      'Visit in the evening for a pleasant atmosphere.',
+    distanceKm: { mumbai: 475, pune: 395 },
+    estimatedCostPerDay: 1100,
+    popularFoodNearby: ['Ghavane', 'Kaju Usal'],
+    rating: 4.4,
+  },
+
+  {
+    id: 'sawantwadi-chitar-ali',
+    name: 'Chitar Ali Craft Village',
+    marathiName: 'चित्तर आळी',
+    category: 'Heritage',
+    district: 'Sindhudurg',
+    taluka: 'Sawantwadi',
+    description:
+      'A cultural area famous for traditional Sawantwadi handicrafts.',
+    longDescription:
+      'Sawantwadi has a long tradition of handmade crafts including wooden toys, Ganjifa art and traditional artistic work.',
+    bestTimeToVisit: 'October to March',
+    seasonBadge: 'All Season',
+    coordinates: { lat: 15.905, lng: 73.82 },
+    images: [
+      'https://images.unsplash.com/photo-1564399579883-451a5d44ec08',
+    ],
+    highlights: [
+      'Handicrafts',
+      'Traditional Art',
+      'Wooden Toys',
+      'Ganjifa Culture',
+    ],
+    travelTips:
+      'Support local artisans by purchasing authentic handmade products.',
+    distanceKm: { mumbai: 475, pune: 395 },
+    estimatedCostPerDay: 1200,
+    popularFoodNearby: ['Kaju Usal', 'Ghavane'],
+    rating: 4.6,
+  },
+
   {
     id: 'sawantwadi-palace',
-    name: 'Sawantwadi Palace & Ganjifa Art',
-    marathiName: 'सावंतवाडी',
+    name: 'Sawantwadi Palace',
+    marathiName: 'सावंतवाडी राजवाडा',
     category: 'Cultural Heritage',
     district: 'Sindhudurg',
-    description: 'Royal palace town renowned for wooden toy making, hand-painted Ganjifa playing cards, and Moti Talao lake.',
-    longDescription: 'Sawantwadi was the capital of the royal Bhonsle Kingdom. The red stone Sawantwadi Palace houses a museum dedicated to Ganjifa—a traditional 300-year-old Indian circular playing card craft kept alive by the royal family. The town is famous worldwide for lacquer-painted wooden toys.',
+    taluka: 'Sawantwadi',
+    description:
+      'Historic palace associated with the Sawantwadi royal family.',
+    longDescription:
+      'Sawantwadi Palace is an important cultural landmark showcasing the heritage, art and history of the region.',
     bestTimeToVisit: 'October to March',
-    seasonBadge: 'Winter Bliss',
-    coordinates: { lat: 15.9038, lng: 73.8181 },
-    images: [
-      'https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1200&q=80'
-    ],
-    highlights: ['Sawantwadi Royal Palace', 'Heritage Wooden Toy Market', 'Ganjifa Card Live Demo', 'Moti Talao Evening Lights'],
-    travelTips: 'Buy authentic handmade wooden fruit sets and lacquer painted toys directly from Chitar Ali market.',
-    distanceKm: { mumbai: 510, pune: 375 },
-    estimatedCostPerDay: 2100,
-    popularFoodNearby: ['Sawantwadi Malvani Khaja', 'Cashew Nut Curry', 'Sol Kadhi'],
-    rating: 4.6
-  },
-  {
-    id: 'kelwa-beach-palghar',
-    name: 'Kelwa Beach & Fort',
-    marathiName: 'केळवे बीच',
-    category: 'Beaches',
-    district: 'Palghar',
-    description: 'Dense Casuarina plantation beach near Mumbai with ancient Portuguese fort ruins surrounded by sea tides.',
-    longDescription: 'Kelwa Beach in Palghar district spans 7 kilometers along the northern Kokan belt. It features dense cypress forests along the coastline, camel rides, and two historic forts—Kelwa Fort and Sheetla Devi Temple.',
-    bestTimeToVisit: 'October to April',
     seasonBadge: 'All Season',
-    coordinates: { lat: 19.6201, lng: 72.7302 },
+    coordinates: { lat: 15.9047, lng: 73.8212 },
     images: [
-      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1564507592333-c60657eea523',
     ],
-    highlights: ['7km Suru (Casuarina) Forest Beach', 'Kelwa Sea Fort Ruins', 'Sheetla Devi Temple', 'Buggy Rides'],
-    travelTips: 'Great quick getaway from Mumbai via western railway train to Palghar station.',
-    distanceKm: { mumbai: 110, pune: 210 },
-    estimatedCostPerDay: 1900,
-    popularFoodNearby: ['Agri Coastal Fish Fry', 'Neera Drink', 'Chiku Shake'],
-    rating: 4.4
-  }
+    highlights: [
+      'Royal Heritage',
+      'Architecture',
+      'Traditional Art',
+      'History',
+    ],
+    travelTips:
+      'Check local visiting hours before planning a detailed palace visit.',
+    distanceKm: { mumbai: 475, pune: 395 },
+    estimatedCostPerDay: 1200,
+    popularFoodNearby: ['Ghavane', 'Kaju Usal'],
+    rating: 4.6,
+    featured: true,
+  },
+
+  // =========================
+  // VENGURLA TALUKA
+  // =========================
+
+  {
+    id: 'vengurla-beach',
+    name: 'Vengurla Beach',
+    marathiName: 'वेंगुर्ला समुद्रकिनारा',
+    category: 'Beaches',
+    district: 'Sindhudurg',
+    taluka: 'Vengurla',
+    description:
+      'A scenic and relatively peaceful beach in southern Sindhudurg.',
+    longDescription:
+      "Vengurla is one of southern Sindhudurg's most scenic coastal towns, combining beaches, historic lighthouse views and traditional fishing culture.",
+    bestTimeToVisit: 'October to May',
+    seasonBadge: 'All Season',
+    coordinates: { lat: 15.855, lng: 73.633 },
+    images: [
+      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e',
+    ],
+    highlights: [
+      'Clean Beach',
+      'Sunset',
+      'Fishing Culture',
+      'Photography',
+    ],
+    travelTips:
+      'Visit during sunset for the best views.',
+    distanceKm: { mumbai: 520, pune: 430 },
+    estimatedCostPerDay: 1400,
+    popularFoodNearby: ['Fish Thali', 'Sol Kadhi'],
+    rating: 4.6,
+  },
+
+  {
+    id: 'vengurla-lighthouse',
+    name: 'Vengurla Lighthouse',
+    marathiName: 'वेंगुर्ला दीपगृह',
+    category: 'Heritage',
+    district: 'Sindhudurg',
+    taluka: 'Vengurla',
+    description:
+      'Historic lighthouse offering beautiful coastal views.',
+    longDescription:
+      'The Vengurla lighthouse is an important coastal landmark and offers scenic views of the Arabian Sea and surrounding coastline.',
+    bestTimeToVisit: 'October to May',
+    seasonBadge: 'All Season',
+    coordinates: { lat: 15.82, lng: 73.63 },
+    images: [
+      'https://images.unsplash.com/photo-1498623116890-37e912163d5d',
+    ],
+    highlights: [
+      'Lighthouse',
+      'Sea Views',
+      'Photography',
+      'Coastal Heritage',
+    ],
+    travelTips:
+      'Check local access rules and timings before visiting.',
+    distanceKm: { mumbai: 525, pune: 435 },
+    estimatedCostPerDay: 1300,
+    popularFoodNearby: ['Fresh Fish', 'Sol Kadhi'],
+    rating: 4.5,
+  },
+
+  {
+    id: 'vengurla-shiroda',
+    name: 'Shiroda Beach',
+    marathiName: 'शिरोडा समुद्रकिनारा',
+    category: 'Beaches',
+    district: 'Sindhudurg',
+    taluka: 'Vengurla',
+    description:
+      'A long and peaceful beach close to the Goa border.',
+    longDescription:
+      'Shiroda Beach is known for its wide coastline, peaceful surroundings and beautiful sunsets.',
+    bestTimeToVisit: 'October to May',
+    seasonBadge: 'All Season',
+    coordinates: { lat: 15.75, lng: 73.68 },
+    images: [
+      'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57',
+    ],
+    highlights: [
+      'Long Beach',
+      'Sunset',
+      'Peaceful Coast',
+      'Photography',
+    ],
+    travelTips:
+      'Avoid swimming during rough sea conditions.',
+    distanceKm: { mumbai: 530, pune: 440 },
+    estimatedCostPerDay: 1300,
+    popularFoodNearby: ['Fish Curry', 'Sol Kadhi'],
+    rating: 4.5,
+  },
+
+  // =========================
+  // DEVGAD TALUKA
+  // =========================
+
+  {
+    id: 'devgad-beach',
+    name: 'Devgad Beach',
+    marathiName: 'देवगड समुद्रकिनारा',
+    category: 'Beaches',
+    district: 'Sindhudurg',
+    taluka: 'Devgad',
+    description:
+      'A beautiful coastal destination famous for sea views and Alphonso mangoes.',
+    longDescription:
+      "Devgad combines beautiful coastal scenery with one of Maharashtra's most famous Alphonso mango-growing regions.",
+    bestTimeToVisit: 'October to May',
+    seasonBadge: 'All Season',
+    coordinates: { lat: 16.376, lng: 73.37 },
+    images: [
+      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e',
+    ],
+    highlights: [
+      'Beach',
+      'Alphonso Mangoes',
+      'Sunset',
+      'Coastal Views',
+    ],
+    travelTips:
+      'Summer is especially interesting if you want to explore the mango-growing region.',
+    distanceKm: { mumbai: 450, pune: 375 },
+    estimatedCostPerDay: 1300,
+    popularFoodNearby: ['Fish Thali', 'Sol Kadhi'],
+    rating: 4.5,
+  },
+
+  {
+    id: 'devgad-lighthouse',
+    name: 'Devgad Lighthouse',
+    marathiName: 'देवगड दीपगृह',
+    category: 'Heritage',
+    district: 'Sindhudurg',
+    taluka: 'Devgad',
+    description:
+      'A coastal lighthouse with panoramic views of the Arabian Sea.',
+    longDescription:
+      "Devgad Lighthouse is an important coastal landmark and provides scenic views of the Arabian Sea and the surrounding coastline.",
+    bestTimeToVisit: 'October to May',
+    seasonBadge: 'All Season',
+    coordinates: { lat: 16.38, lng: 73.37 },
+    images: [
+      'https://images.unsplash.com/photo-1498623116890-37e912163d5d',
+    ],
+    highlights: [
+      'Lighthouse',
+      'Sea View',
+      'Sunset',
+      'Photography',
+    ],
+    travelTips:
+      'Confirm visiting access and timings locally before travelling.',
+    distanceKm: { mumbai: 450, pune: 375 },
+    estimatedCostPerDay: 1300,
+    popularFoodNearby: ['Fish Curry', 'Sol Kadhi'],
+    rating: 4.5,
+  },
+
+  // =========================
+  // VAI BHAVWADI TALUKA
+  // =========================
+
+  {
+    id: 'vaibhavwadi-bhogawe',
+    name: 'Bhogawe Waterfall Region',
+    marathiName: 'भोगवे परिसर',
+    category: 'Waterfalls',
+    district: 'Sindhudurg',
+    taluka: 'Vaibhavwadi',
+    description:
+      'A green monsoon region with streams and seasonal waterfalls.',
+    longDescription:
+      'Vaibhavwadi and its surrounding Sahyadri landscape become lush and green during monsoon, offering opportunities for nature exploration.',
+    bestTimeToVisit: 'June to September',
+    seasonBadge: 'Monsoon Magic',
+    coordinates: { lat: 16.43, lng: 73.72 },
+    images: [
+      'https://images.unsplash.com/photo-1433086966358-54859d0ed716',
+    ],
+    highlights: [
+      'Monsoon',
+      'Waterfalls',
+      'Greenery',
+      'Nature',
+    ],
+    travelTips:
+      'Avoid slippery trails during heavy rainfall.',
+    distanceKm: { mumbai: 450, pune: 380 },
+    estimatedCostPerDay: 1000,
+    popularFoodNearby: ['Ghavane', 'Local Thali'],
+    rating: 4.3,
+  },
+
+  {
+    id: 'vaibhavwadi-trails',
+    name: 'Vaibhavwadi Sahyadri Trails',
+    marathiName: 'वैभववाडी सह्याद्री',
+    category: 'Viewpoints',
+    district: 'Sindhudurg',
+    taluka: 'Vaibhavwadi',
+    description:
+      'Green Sahyadri landscapes ideal for nature and road-trip experiences.',
+    longDescription:
+      'Vaibhavwadi provides access to beautiful rural and Sahyadri landscapes, particularly attractive during and after the monsoon.',
+    bestTimeToVisit: 'June to February',
+    seasonBadge: 'All Season',
+    coordinates: { lat: 16.49, lng: 73.72 },
+    images: [
+      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b',
+    ],
+    highlights: [
+      'Sahyadri',
+      'Valley Views',
+      'Greenery',
+      'Road Trips',
+    ],
+    travelTips:
+      'Travel with local guidance for lesser-known trails.',
+    distanceKm: { mumbai: 455, pune: 385 },
+    estimatedCostPerDay: 1000,
+    popularFoodNearby: ['Ghavane', 'Tea'],
+    rating: 4.4,
+  },
+
+  // =========================
+  // DODAMARG TALUKA
+  // =========================
+
+  {
+    id: 'dodamarg-tillari',
+    name: 'Tillari Dam & Valley',
+    marathiName: 'तिलारी धरण व खोरे',
+    category: 'Nature & Dams',
+    district: 'Sindhudurg',
+    taluka: 'Dodamarg',
+    description:
+      'A scenic dam and valley region surrounded by Western Ghats greenery.',
+    longDescription:
+      'The Tillari region around Dodamarg is known for forests, valleys and beautiful monsoon landscapes.',
+    bestTimeToVisit: 'June to February',
+    seasonBadge: 'Monsoon Magic',
+    coordinates: { lat: 15.87, lng: 74.18 },
+    images: [
+      'https://images.unsplash.com/photo-1500534623283-312aade485b7',
+    ],
+    highlights: [
+      'Dam',
+      'Valley',
+      'Western Ghats',
+      'Monsoon Views',
+    ],
+    travelTips:
+      'Avoid entering restricted dam areas and follow local safety instructions.',
+    distanceKm: { mumbai: 540, pune: 450 },
+    estimatedCostPerDay: 1100,
+    popularFoodNearby: ['Local Thali', 'Tea'],
+    rating: 4.5,
+  },
+
+  {
+    id: 'dodamarg-forest',
+    name: 'Dodamarg Forest Trails',
+    marathiName: 'दोडामार्ग जंगल परिसर',
+    category: 'Wildlife',
+    district: 'Sindhudurg',
+    taluka: 'Dodamarg',
+    description:
+      'Forest landscapes near the northern Western Ghats.',
+    longDescription:
+      "Dodamarg lies in the biodiversity-rich northern Western Ghats and provides a forest-oriented experience very different from Sindhudurg's beaches.",
+    bestTimeToVisit: 'June to February',
+    seasonBadge: 'Monsoon Magic',
+    coordinates: { lat: 15.92, lng: 74.15 },
+    images: [
+      'https://images.unsplash.com/photo-1448375240586-882707db888b',
+    ],
+    highlights: [
+      'Forest',
+      'Biodiversity',
+      'Nature Walks',
+      'Western Ghats',
+    ],
+    travelTips:
+      'Do not enter isolated forest areas without local guidance.',
+    distanceKm: { mumbai: 540, pune: 450 },
+    estimatedCostPerDay: 1100,
+    popularFoodNearby: ['Local Food', 'Tea'],
+    rating: 4.5,
+  },
 ];
+
+
+// =====================================================
+// FOOD
+// =====================================================
 
 export const INITIAL_FOOD_ITEMS: FoodItem[] = [
   {
-    id: 'sol-kadhi',
-    name: 'Authentic Sol Kadhi',
-    marathiName: 'सोल कढी',
-    category: 'Beverages',
-    region: 'Entire Kokan Belt (Malvan/Ratnagiri)',
-    description: 'Refreshing pink digestive drink prepared from fresh wild kokum (Garcinia indica) extract and thick coconut milk infused with garlic and green chilies.',
-    priceEstimate: '₹40 - ₹80 per glass',
-    ingredients: ['Fresh Kokum Extract', 'Thick Coconut Milk', 'Garlic', 'Green Chili', 'Coriander', 'Rock Salt'],
-    image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=800&q=80',
-    isSpicy: false,
-    mustTryPlaces: ['Atithi Parinay (Ratnagiri)', 'Hotel Chaitanya (Malvan)', 'Gajaraj Mess (Alibaug)']
+    id: 'food-sol-kadhi',
+    name: 'Sol Kadhi',
+    marathiName: 'सोलकढी',
+    description:
+      'A refreshing Konkan drink made with kokum and coconut milk.',
+    district: 'Sindhudurg',
+    ingredients: ['Kokum', 'Coconut Milk', 'Garlic', 'Green Chilli'],
+    image:
+      'https://images.unsplash.com/photo-1601050690597-df0568f70950',
+    priceRange: '₹40 - ₹100',
+    spiceLevel: 2,
   },
+
   {
-    id: 'kombdi-vade',
+    id: 'food-kombdi-vade',
     name: 'Malvani Kombdi Vade',
-    marathiName: 'कोम्बडी वडे',
-    category: 'Seafood Special',
-    region: 'Sindhudurg & Ratnagiri',
-    description: 'Rich, spicy Malvani chicken curry served with deep-fried multi-grain puris (Vade) made from rice flour, black gram, coriander, and spices.',
-    priceEstimate: '₹220 - ₹380 per plate',
-    ingredients: ['Free-range Chicken', 'Malvani Masala', 'Roasted Coconut Paste', 'Rice & Urad Flour Vade', 'Onions'],
-    image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80',
-    isSpicy: true,
-    mustTryPlaces: ['Bambai Rasoi (Tarkarli)', 'Hotel Swami (Malvan Jetty)', 'Purna Brahma (Devgad)']
+    marathiName: 'मालवणी कोंबडी वडे',
+    description:
+      'Traditional spicy Malvani chicken served with crispy vade.',
+    district: 'Sindhudurg',
+    ingredients: ['Chicken', 'Malvani Masala', 'Rice', 'Coconut'],
+    image:
+      'https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7',
+    priceRange: '₹180 - ₹350',
+    spiceLevel: 4,
   },
+
   {
-    id: 'surmai-tawa-fry',
+    id: 'food-surmai',
     name: 'Kokan Surmai Tawa Fry',
-    marathiName: 'सुरमई तवा फ्राय',
-    category: 'Seafood Special',
-    region: 'Malvan, Alibaug & Ratnagiri',
-    description: 'Thick King Mackerel (Surmai) steak marinated in lemon juice, red chili paste, and Malvani spices, shallow fried on iron tawa with semolina (rava) crust.',
-    priceEstimate: '₹300 - ₹500 per portion',
-    ingredients: ['Fresh Surmai Steak', 'Chili-Garlic Paste', 'Malvani Spice Rub', 'Coarse Rava / Semolina', 'Kokum Agal'],
-    image: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80',
-    isSpicy: true,
-    mustTryPlaces: ['Sanman Restaurant (Alibaug)', 'Only Fish (Ganpatipule)', 'Chaitanya (Malvan)']
+    marathiName: 'कोकणी सुरमई तवा फ्राय',
+    description:
+      'Fresh king fish marinated with traditional Konkan spices and shallow fried.',
+    district: 'Sindhudurg',
+    ingredients: ['Surmai', 'Rice Flour', 'Red Chilli', 'Turmeric'],
+    image:
+      'https://images.unsplash.com/photo-1515003197210-e0cd71810b5f',
+    priceRange: '₹250 - ₹500',
+    spiceLevel: 3,
   },
+
   {
-    id: 'ukadiche-modak',
+    id: 'food-modak',
     name: 'Steamed Ukadiche Modak',
     marathiName: 'उकडीचे मोदक',
-    category: 'Desserts & Sweets',
-    region: 'Entire Kokan Region',
-    description: 'Traditional Maratha sweet dumpling made from steamed rice flour stuffed with freshly grated coconut, organic jaggery, cardamom, and topped with hot desi ghee.',
-    priceEstimate: '₹40 - ₹70 per piece',
-    ingredients: ['Fine Ambemohar Rice Flour', 'Fresh Grated Coconut', 'Organic Jaggery', 'Nutmeg & Cardamom', 'Desi Cow Ghee'],
-    image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80',
-    isSpicy: false,
-    mustTryPlaces: ['Modak House (Ganpatipule)', 'Joshi Khanaval (Harihareshwar)', 'Local Homestays']
+    description:
+      'Soft steamed rice-flour dumplings filled with coconut and jaggery.',
+    district: 'Sindhudurg',
+    ingredients: ['Rice Flour', 'Coconut', 'Jaggery', 'Cardamom'],
+    image:
+      'https://images.unsplash.com/photo-1626132647523-66f5bf380027',
+    priceRange: '₹60 - ₹150',
+    spiceLevel: 1,
   },
+
   {
-    id: 'ghavane-kaju-usal',
+    id: 'food-ghavane',
     name: 'Ghavane with Kaju Usal',
     marathiName: 'घावणे आणि काजू उसळ',
-    category: 'Traditional Veg',
-    region: 'Sindhudurg (Sawantwadi & Malvan)',
-    description: 'Lacy, paper-thin steamed rice crepes (Ghavane) served with a luscious gravy of tender green cashew nuts (Tender Kaju) cooked in coconut paste.',
-    priceEstimate: '₹140 - ₹220 per thali',
-    ingredients: ['Soaked Rice Batter', 'Fresh Green Cashew Nuts', 'Gratin Coconut Paste', 'Mustard Seeds', 'Curry Leaves'],
-    image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80',
-    isSpicy: false,
-    mustTryPlaces: ['Atithi Griha (Sawantwadi)', 'Prachin Konkan Mess (Ganpatipule)', 'Bhartiya Niwas (Kudal)']
+    description:
+      'Soft rice crepes served with a traditional cashew-based Konkan curry.',
+    district: 'Sindhudurg',
+    ingredients: ['Rice', 'Cashew', 'Coconut', 'Spices'],
+    image:
+      'https://images.unsplash.com/photo-1630383249896-424e482df921',
+    priceRange: '₹100 - ₹220',
+    spiceLevel: 2,
   },
+
   {
-    id: 'malvani-crab-masala',
+    id: 'food-crab',
     name: 'Malvani Crab Curry & Fry',
-    marathiName: 'मालवणी खेकडा मसाला',
-    category: 'Seafood Special',
-    region: 'Devbagh & Malvan',
-    description: 'Fresh sea crabs simmered in aromatic roasted coconut gravy rich with stone-ground Malvani spices, roasted coriander, and whole dry chilies.',
-    priceEstimate: '₹350 - ₹600 per portion',
-    ingredients: ['Fresh Sea Crabs', 'Kanda Lasun Masala', 'Dry Coconut (Kopra)', 'Tamarind / Kokum', 'Garlic'],
-    image: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80',
-    isSpicy: true,
-    mustTryPlaces: ['Devbagh Sangam Shack', 'Atithi Parinay', 'Hotel Sea View (Dapoli)']
-  }
+    marathiName: 'मालवणी खेकडा करी',
+    description:
+      'Fresh coastal crab prepared with aromatic Malvani spices.',
+    district: 'Sindhudurg',
+    ingredients: ['Crab', 'Coconut', 'Malvani Masala', 'Tamarind'],
+    image:
+      'https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4',
+    priceRange: '₹300 - ₹600',
+    spiceLevel: 4,
+  },
 ];
+
+
+// =====================================================
+// FESTIVALS
+// =====================================================
 
 export const INITIAL_FESTIVALS: Festival[] = [
   {
-    id: 'ganesh-chaturthi-kokan',
+    id: 'festival-ganesh',
     name: 'Kokan Ganesh Chaturthi',
-    marathiName: 'कोकण गणेशोत्सव',
-    month: 'August - September (Bhadrapada)',
-    description: 'The soul of Kokan. Millions of Kokanis working across the world return to their ancestral village homes (Ghar) for 5 to 11 days of grand deity worship, lighting, and community feasts.',
-    significance: 'Celebrates Lord Ganesha as the protector of sea voyagers and crop harvest. Ancestral houses are decorated with banana leaves, hibiscus, and handcrafted eco-friendly idols.',
-    topDistricts: ['Ratnagiri', 'Sindhudurg', 'Raigad'],
-    image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80',
-    keyAttractions: ['Jakadi & Naman Folk Songs', 'Home-cooked Ukadiche Modak', 'Village Aarti Processions', 'Eco-friendly Immersion']
+    marathiName: 'कोकणातील गणेश चतुर्थी',
+    month: 'August / September',
+    description:
+      'The most important festival celebrated with traditional rituals, decorations and family gatherings.',
+    district: 'Sindhudurg',
+    highlights: [
+      'Traditional Ganpati Idols',
+      'Modak',
+      'Family Gatherings',
+      'Cultural Programs',
+    ],
+    image:
+      'https://images.unsplash.com/photo-1598514982901-ae627e2b5d4b',
   },
+
   {
-    id: 'shimga-holi-kokan',
-    name: 'Kokan Shimga (Holi)',
-    marathiName: 'कोकण शिमगा',
-    month: 'March (Phalguna)',
-    description: 'A 15-day vibrant cultural festival where village Palkhis (Palanqins of local deities) travel house to house accompanied by traditional dhol drums, dancing, and color spraying.',
-    significance: 'Deities visit every home to bless crops and fishermen before the onset of summer. Village folk perform "Sankasur" theatrical folk dance.',
-    topDistricts: ['Ratnagiri', 'Sindhudurg'],
-    image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80',
-    keyAttractions: ['Palkhi Nrutya (Dancing Palanquin)', 'Sankasur Folk Drama', 'Homghat Bonfire', 'Village Community Feasts']
+    id: 'festival-shimga',
+    name: 'Kokan Shimga',
+    marathiName: 'कोकणातील शिमगा',
+    month: 'March',
+    description:
+      'Traditional spring festival celebrated with folk performances and village traditions.',
+    district: 'Sindhudurg',
+    highlights: [
+      'Folk Art',
+      'Traditional Music',
+      'Village Celebrations',
+      'Cultural Heritage',
+    ],
+    image:
+      'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6',
   },
+
   {
-    id: 'narali-purnima',
-    name: 'Narali Purnima (Coconut Festival)',
+    id: 'festival-narali',
+    name: 'Narali Purnima',
     marathiName: 'नारळी पौर्णिमा',
-    month: 'August (Shravan)',
-    description: 'Fishermen community festival marking the official end of monsoon sea ban. Golden coconuts are offered to the Ocean God (Darya Raja) before boats set sail into deep ocean.',
-    significance: 'Fishermen express gratitude to the ocean, decorate their colorful trawlers, and cook sweet Narali Bhat (Coconut Rice).',
-    topDistricts: ['Raigad', 'Sindhudurg', 'Palghar', 'Thane'],
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
-    keyAttractions: ['Decorated Boat Rally in Sea', 'Golden Coconut Offering', 'Narali Bhat Sweet Dish', 'Koli Dance Performance']
+    month: 'August',
+    description:
+      'A coastal festival connected with fishermen and the beginning of the fishing season.',
+    district: 'Sindhudurg',
+    highlights: [
+      'Coconut Offering',
+      'Fishing Community',
+      'Sea Worship',
+      'Traditional Rituals',
+    ],
+    image:
+      'https://images.unsplash.com/photo-1531058020387-3be344556be6',
   },
+
   {
-    id: 'anganewadi-jatra',
+    id: 'festival-anganewadi',
     name: 'Anganewadi Bharadi Devi Jatra',
     marathiName: 'आंगणेवाडी भराडी देवी जत्रा',
-    month: 'February',
-    description: 'Massive annual fair in Malvan drawing over 10-15 lakh devotees to worship Goddess Bharadi Devi who fulfills wishes (Navas).',
-    significance: 'The date is decided dynamically by Goddess prasad-kaul omens. Entire district transformed into a grand festive bazaar.',
-    topDistricts: ['Sindhudurg'],
-    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
-    keyAttractions: ['Mass Community Kitchen (Mahaprasad)', 'Malvani Handicraft Fair', 'Devotional Bhajans', 'Traditional Night Bazaars']
-  }
+    month: 'February / March',
+    description:
+      'A major annual religious gathering at Anganewadi in Sindhudurg.',
+    district: 'Sindhudurg',
+    highlights: [
+      'Bharadi Devi Temple',
+      'Large Pilgrimage',
+      'Local Culture',
+      'Traditional Market',
+    ],
+    image:
+      'https://images.unsplash.com/photo-1548013146-72479768bada',
+  },
 ];
 
+
+// =====================================================
+// DEFAULT WEATHER
+// =====================================================
+
 export const DEFAULT_WEATHER_DATA: Record<string, WeatherData> = {
-  'Sindhudurg': {
+  Sindhudurg: {
     district: 'Sindhudurg',
-    tempC: 28,
-    condition: 'Pleasant Coastal Breeze',
+    temperature: 29,
+    condition: 'Partly Cloudy',
     humidity: 72,
-    monsoonAlert: false,
-    recommendedActivities: ['Scuba diving at Tarkarli', 'Sunset ferry to Sindhudurg Fort', 'Sawantwadi Palace tour'],
-    placesToVisitNow: ['Tarkarli Beach', 'Devbagh Sangam', 'Kunkeshwar Temple'],
-    seaCondition: 'Calm'
+    windSpeed: 12,
+    forecast: [
+      {
+        day: 'Today',
+        temperature: 29,
+        condition: 'Partly Cloudy',
+      },
+      {
+        day: 'Tomorrow',
+        temperature: 30,
+        condition: 'Sunny',
+      },
+      {
+        day: 'Day 3',
+        temperature: 28,
+        condition: 'Cloudy',
+      },
+    ],
   },
-  'Ratnagiri': {
+
+  Ratnagiri: {
     district: 'Ratnagiri',
-    tempC: 29,
-    condition: 'Partly Sunny',
+    temperature: 30,
+    condition: 'Sunny',
     humidity: 70,
-    monsoonAlert: false,
-    recommendedActivities: ['Ganpatipule Ganesha Darshan', 'Aare Ware coastal drive', 'Alphonso tasting at orchards'],
-    placesToVisitNow: ['Ganpatipule Beach', 'Velas Turtle Village', 'Guhagar Beach'],
-    seaCondition: 'Calm'
+    windSpeed: 10,
+    forecast: [
+      {
+        day: 'Today',
+        temperature: 30,
+        condition: 'Sunny',
+      },
+      {
+        day: 'Tomorrow',
+        temperature: 31,
+        condition: 'Partly Cloudy',
+      },
+      {
+        day: 'Day 3',
+        temperature: 29,
+        condition: 'Cloudy',
+      },
+    ],
   },
-  'Raigad': {
+
+  Raigad: {
     district: 'Raigad',
-    tempC: 30,
-    condition: 'Warm Sunshine',
-    humidity: 68,
-    monsoonAlert: false,
-    recommendedActivities: ['Murud Janjira boat trip', 'Varsoli jet skiing', 'Pradakshina at Harihareshwar'],
-    placesToVisitNow: ['Murud Janjira', 'Harihareshwar', 'Alibaug'],
-    seaCondition: 'Calm'
+    temperature: 29,
+    condition: 'Cloudy',
+    humidity: 74,
+    windSpeed: 11,
+    forecast: [
+      {
+        day: 'Today',
+        temperature: 29,
+        condition: 'Cloudy',
+      },
+      {
+        day: 'Tomorrow',
+        temperature: 30,
+        condition: 'Sunny',
+      },
+      {
+        day: 'Day 3',
+        temperature: 28,
+        condition: 'Rainy',
+      },
+    ],
   },
-  'Palghar': {
+
+  Palghar: {
     district: 'Palghar',
-    tempC: 31,
-    condition: 'Sunny Shoreline',
-    humidity: 65,
-    monsoonAlert: false,
-    recommendedActivities: ['Kelwa cypress wood walks', 'Sheetla Devi Temple', 'Buggy rides'],
-    placesToVisitNow: ['Kelwa Beach', 'Shirgaon Fort', 'Bordain Shore'],
-    seaCondition: 'Calm'
+    temperature: 28,
+    condition: 'Partly Cloudy',
+    humidity: 76,
+    windSpeed: 13,
+    forecast: [
+      {
+        day: 'Today',
+        temperature: 28,
+        condition: 'Partly Cloudy',
+      },
+      {
+        day: 'Tomorrow',
+        temperature: 29,
+        condition: 'Sunny',
+      },
+      {
+        day: 'Day 3',
+        temperature: 27,
+        condition: 'Cloudy',
+      },
+    ],
   },
-  'Thane': {
+
+  Thane: {
     district: 'Thane',
-    tempC: 31,
-    condition: 'Clear Sky',
-    humidity: 64,
-    monsoonAlert: false,
-    recommendedActivities: ['Gaimukh promenade walk', 'Yeoor Hills nature trail', 'Creek boat safari'],
-    placesToVisitNow: ['Yeoor Hills', 'Upvan Lake', 'Gaimukh Waterfront'],
-    seaCondition: 'Calm'
-  }
+    temperature: 29,
+    condition: 'Cloudy',
+    humidity: 75,
+    windSpeed: 14,
+    forecast: [
+      {
+        day: 'Today',
+        temperature: 29,
+        condition: 'Cloudy',
+      },
+      {
+        day: 'Tomorrow',
+        temperature: 30,
+        condition: 'Sunny',
+      },
+      {
+        day: 'Day 3',
+        temperature: 28,
+        condition: 'Rainy',
+      },
+    ],
+  },
 };

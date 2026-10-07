@@ -25,7 +25,9 @@ export const Hero: React.FC<HeroProps> = ({
   onNavigateToBudget,
   onOpenAiGuide
 }) => {
-  const districts = ['All', 'Sindhudurg', 'Ratnagiri', 'Raigad', 'Palghar'];
+  const districts = ['All', 'Kankavli', 'Kudal', 'Malvan', 'Sawantwadi', 'Vengurla', 'Devgad', 'Vaibhavwadi', 'Dodamarg'];
+
+
   const categories = ['All', 'Beaches', 'Sea Forts', 'Temples', 'Hill Stations', 'Waterfalls', 'Wildlife'];
 
   return (

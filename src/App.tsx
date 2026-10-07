@@ -10,7 +10,8 @@ import { BudgetCalculator } from './components/BudgetCalculator';
 import { CulturalHub } from './components/CulturalHub';
 import { WeatherWidget } from './components/WeatherWidget';
 import { AiLocalGuideModal } from './components/AiLocalGuideModal';
-import { EnquiryModal } from './components/EnquiryModal';
+import EnquiryModal from "./components/EnquiryModal";
+
 import { AdminDashboard } from './components/AdminDashboard';
 import { Destination, FoodItem, Festival, AdminUser } from './types';
 import { MapPin, Compass, Sparkles, Filter, RefreshCw } from 'lucide-react';
