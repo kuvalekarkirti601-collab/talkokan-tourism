@@ -716,7 +716,7 @@ export const INITIAL_DESTINATIONS: Destination[] = [
   },
 
   // =========================
-  // VAI BHAVWADI TALUKA
+  // VAIBHAVWADI TALUKA
   // =========================
 
   {
@@ -851,6 +851,8 @@ export const INITIAL_DESTINATIONS: Destination[] = [
 
 // =====================================================
 // FOOD
+// Photos: public/images/ folder madhe aahet.
+// Spaces cha jagi %20 vaparla aahe (file naav jasa aahe tasach).
 // =====================================================
 
 export const INITIAL_FOOD_ITEMS: FoodItem[] = [
@@ -862,9 +864,8 @@ export const INITIAL_FOOD_ITEMS: FoodItem[] = [
       'A refreshing Konkan drink made with kokum and coconut milk.',
     district: 'Sindhudurg',
     ingredients: ['Kokum', 'Coconut Milk', 'Garlic', 'Green Chilli'],
-    image:
-      'https://images.unsplash.com/photo-1601050690597-df0568f70950',
-    priceRange: '₹40 - ₹100',
+    image: '/images/Solkadhi.jpg',
+    priceRange: '₹20 - ₹50',
     spiceLevel: 2,
   },
 
@@ -876,8 +877,7 @@ export const INITIAL_FOOD_ITEMS: FoodItem[] = [
       'Traditional spicy Malvani chicken served with crispy vade.',
     district: 'Sindhudurg',
     ingredients: ['Chicken', 'Malvani Masala', 'Rice', 'Coconut'],
-    image:
-      'https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7',
+    image: '/images/Komdi_vade.jpg',
     priceRange: '₹180 - ₹350',
     spiceLevel: 4,
   },
@@ -890,8 +890,7 @@ export const INITIAL_FOOD_ITEMS: FoodItem[] = [
       'Fresh king fish marinated with traditional Konkan spices and shallow fried.',
     district: 'Sindhudurg',
     ingredients: ['Surmai', 'Rice Flour', 'Red Chilli', 'Turmeric'],
-    image:
-      'https://images.unsplash.com/photo-1515003197210-e0cd71810b5f',
+    image: '/images/surmai%20fry.jpg',
     priceRange: '₹250 - ₹500',
     spiceLevel: 3,
   },
@@ -904,8 +903,7 @@ export const INITIAL_FOOD_ITEMS: FoodItem[] = [
       'Soft steamed rice-flour dumplings filled with coconut and jaggery.',
     district: 'Sindhudurg',
     ingredients: ['Rice Flour', 'Coconut', 'Jaggery', 'Cardamom'],
-    image:
-      'https://images.unsplash.com/photo-1626132647523-66f5bf380027',
+    image: '/images/Ukadiche_Modak.jpg',
     priceRange: '₹60 - ₹150',
     spiceLevel: 1,
   },
@@ -918,8 +916,7 @@ export const INITIAL_FOOD_ITEMS: FoodItem[] = [
       'Soft rice crepes served with a traditional cashew-based Konkan curry.',
     district: 'Sindhudurg',
     ingredients: ['Rice', 'Cashew', 'Coconut', 'Spices'],
-    image:
-      'https://images.unsplash.com/photo-1630383249896-424e482df921',
+    image: '/images/Neer-dosa.jpg',
     priceRange: '₹100 - ₹220',
     spiceLevel: 2,
   },
@@ -932,8 +929,7 @@ export const INITIAL_FOOD_ITEMS: FoodItem[] = [
       'Fresh coastal crab prepared with aromatic Malvani spices.',
     district: 'Sindhudurg',
     ingredients: ['Crab', 'Coconut', 'Malvani Masala', 'Tamarind'],
-    image:
-      'https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4',
+    image: '/images/crab%20curry.jpg',
     priceRange: '₹300 - ₹600',
     spiceLevel: 4,
   },
@@ -959,8 +955,7 @@ export const INITIAL_FESTIVALS: Festival[] = [
       'Family Gatherings',
       'Cultural Programs',
     ],
-    image:
-      'https://images.unsplash.com/photo-1598514982901-ae627e2b5d4b',
+    image: '/images/ganpati%20chaturthi.jpg',
   },
 
   {
@@ -977,8 +972,7 @@ export const INITIAL_FESTIVALS: Festival[] = [
       'Village Celebrations',
       'Cultural Heritage',
     ],
-    image:
-      'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6',
+    image: '/images/Holika_Dahan.jpg',
   },
 
   {
@@ -995,8 +989,7 @@ export const INITIAL_FESTIVALS: Festival[] = [
       'Sea Worship',
       'Traditional Rituals',
     ],
-    image:
-      'https://images.unsplash.com/photo-1531058020387-3be344556be6',
+    image: '/images/Rakhi.jpg',
   },
 
   {
@@ -1013,139 +1006,45 @@ export const INITIAL_FESTIVALS: Festival[] = [
       'Local Culture',
       'Traditional Market',
     ],
-    image:
-      'https://images.unsplash.com/photo-1548013146-72479768bada',
+    image: '/images/Aangne%20wadi.jpg',
   },
 ];
 
 
 // =====================================================
-// DEFAULT WEATHER
+// DEFAULT WEATHER (server.ts import kartoy, mhanun thevla aahe)
+// Weather Guide website madhun kadhla aahe, pan ha data aahe tasach.
 // =====================================================
 
+const makeWeather = (
+  district: string,
+  temperature: number,
+  condition: string,
+  humidity: number,
+  windSpeed: number,
+  next: [string, string]
+): WeatherData =>
+  ({
+    district,
+    temperature,
+    condition,
+    humidity,
+    windSpeed,
+    forecast: [
+      { day: 'Today', temperature, condition },
+      { day: 'Tomorrow', temperature: temperature + 1, condition: next[0] },
+      { day: 'Day 3', temperature: temperature - 1, condition: next[1] },
+    ],
+  } as WeatherData);
+
 export const DEFAULT_WEATHER_DATA: Record<string, WeatherData> = {
-  Sindhudurg: {
-    district: 'Sindhudurg',
-    temperature: 29,
-    condition: 'Partly Cloudy',
-    humidity: 72,
-    windSpeed: 12,
-    forecast: [
-      {
-        day: 'Today',
-        temperature: 29,
-        condition: 'Partly Cloudy',
-      },
-      {
-        day: 'Tomorrow',
-        temperature: 30,
-        condition: 'Sunny',
-      },
-      {
-        day: 'Day 3',
-        temperature: 28,
-        condition: 'Cloudy',
-      },
-    ],
-  },
-
-  Ratnagiri: {
-    district: 'Ratnagiri',
-    temperature: 30,
-    condition: 'Sunny',
-    humidity: 70,
-    windSpeed: 10,
-    forecast: [
-      {
-        day: 'Today',
-        temperature: 30,
-        condition: 'Sunny',
-      },
-      {
-        day: 'Tomorrow',
-        temperature: 31,
-        condition: 'Partly Cloudy',
-      },
-      {
-        day: 'Day 3',
-        temperature: 29,
-        condition: 'Cloudy',
-      },
-    ],
-  },
-
-  Raigad: {
-    district: 'Raigad',
-    temperature: 29,
-    condition: 'Cloudy',
-    humidity: 74,
-    windSpeed: 11,
-    forecast: [
-      {
-        day: 'Today',
-        temperature: 29,
-        condition: 'Cloudy',
-      },
-      {
-        day: 'Tomorrow',
-        temperature: 30,
-        condition: 'Sunny',
-      },
-      {
-        day: 'Day 3',
-        temperature: 28,
-        condition: 'Rainy',
-      },
-    ],
-  },
-
-  Palghar: {
-    district: 'Palghar',
-    temperature: 28,
-    condition: 'Partly Cloudy',
-    humidity: 76,
-    windSpeed: 13,
-    forecast: [
-      {
-        day: 'Today',
-        temperature: 28,
-        condition: 'Partly Cloudy',
-      },
-      {
-        day: 'Tomorrow',
-        temperature: 29,
-        condition: 'Sunny',
-      },
-      {
-        day: 'Day 3',
-        temperature: 27,
-        condition: 'Cloudy',
-      },
-    ],
-  },
-
-  Thane: {
-    district: 'Thane',
-    temperature: 29,
-    condition: 'Cloudy',
-    humidity: 75,
-    windSpeed: 14,
-    forecast: [
-      {
-        day: 'Today',
-        temperature: 29,
-        condition: 'Cloudy',
-      },
-      {
-        day: 'Tomorrow',
-        temperature: 30,
-        condition: 'Sunny',
-      },
-      {
-        day: 'Day 3',
-        temperature: 28,
-        condition: 'Rainy',
-      },
-    ],
-  },
+  Sindhudurg: makeWeather('Sindhudurg', 29, 'Partly Cloudy', 74, 12, ['Sunny', 'Cloudy']),
+  Kankavali: makeWeather('Kankavali', 29, 'Partly Cloudy', 72, 12, ['Sunny', 'Cloudy']),
+  Kudal: makeWeather('Kudal', 30, 'Sunny', 70, 10, ['Partly Cloudy', 'Cloudy']),
+  Vengurla: makeWeather('Vengurla', 29, 'Cloudy', 74, 11, ['Sunny', 'Rainy']),
+  Dodamarg: makeWeather('Dodamarg', 28, 'Partly Cloudy', 76, 13, ['Sunny', 'Cloudy']),
+  Vaibhavwadi: makeWeather('Vaibhavwadi', 29, 'Cloudy', 75, 14, ['Sunny', 'Rainy']),
+  Malvan: makeWeather('Malvan', 29, 'Cloudy', 75, 14, ['Sunny', 'Rainy']),
+  Devgad: makeWeather('Devgad', 29, 'Cloudy', 75, 14, ['Sunny', 'Rainy']),
+  Sawantwadi: makeWeather('Sawantwadi', 29, 'Cloudy', 75, 14, ['Sunny', 'Rainy']),
 };

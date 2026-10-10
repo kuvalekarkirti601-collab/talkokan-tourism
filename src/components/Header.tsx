@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { Compass, MapPin, Calculator, Calendar, Utensils, CloudSun, Shield, Menu, X, Sparkles, Send } from 'lucide-react';
+import { Compass, MapPin, Calculator, Calendar, Utensils, Shield, Menu, X, Send } from 'lucide-react';
 
 interface HeaderProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
   onOpenEnquiry: () => void;
-  onOpenAiGuide: () => void;
   isAdminLoggedIn: boolean;
   onOpenAdmin: () => void;
 }
@@ -14,7 +13,6 @@ export const Header: React.FC<HeaderProps> = ({
   activeTab,
   setActiveTab,
   onOpenEnquiry,
-  onOpenAiGuide,
   isAdminLoggedIn,
   onOpenAdmin
 }) => {
@@ -26,7 +24,6 @@ export const Header: React.FC<HeaderProps> = ({
     { id: 'planner', label: 'Trip Planner', icon: Calendar },
     { id: 'budget', label: 'Budget Calc', icon: Calculator },
     { id: 'culture', label: 'Culinary & Culture', icon: Utensils },
-    { id: 'weather', label: 'Weather Guide', icon: CloudSun },
   ];
 
   const handleNavClick = (id: string) => {
@@ -82,15 +79,6 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Right CTAs */}
           <div className="hidden md:flex items-center space-x-2.5">
-            {/* AI Assistant button */}
-            <button
-              onClick={onOpenAiGuide}
-              className="flex items-center space-x-1.5 px-3 py-2 text-xs font-semibold rounded-xl bg-gradient-to-r from-teal-500/30 via-emerald-500/30 to-teal-600/30 hover:from-teal-500/40 hover:to-emerald-500/40 text-teal-200 border border-teal-500/40 backdrop-blur-md shadow-lg transition-all hover:scale-105"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-pulse" />
-              <span>AI Kokan Guide</span>
-            </button>
-
             {/* Quick Enquiry button */}
             <button
               onClick={onOpenEnquiry}
@@ -116,13 +104,6 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Mobile menu trigger */}
           <div className="flex items-center space-x-2 lg:hidden">
-            <button
-              onClick={onOpenAiGuide}
-              className="p-2 rounded-lg bg-teal-800 text-teal-200 text-xs font-medium flex items-center space-x-1"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-              <span className="sr-only sm:not-sr-only">AI Guide</span>
-            </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2.5 rounded-lg bg-stone-800 text-stone-300 hover:text-white"

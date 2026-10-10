@@ -11,20 +11,20 @@ export const WeatherWidget: React.FC<WeatherWidgetProps> = () => {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const districts: DistrictName[] = ['Sindhudurg', 'Ratnagiri', 'Raigad', 'Palghar', 'Thane'];
+  const districts: DistrictName[] = ['Kankavali', 'Kudal', 'Malvan', 'Sawanwadi', 'Devgad', 'Vengurla', 'Dodamarg' ,'Vaibhavvadi'];
 
-  const fetchWeather = async (district: DistrictName) => {
-    setLoading(true);
-    try {
-      const res = await fetch(`/api/weather?district=${district}`);
-      const data = await res.json();
-      setWeatherData(data);
-    } catch (err) {
-      console.error('Weather fetch error:', err);
-    } finally {
-      setLoading(false);
+  async function fetchWeather(district: DistrictName) {
+      setLoading(true);
+      try {
+        const res = await fetch(`/api/weather?district=${district}`);
+        const data = await res.json();
+        setWeatherData(data);
+      } catch (err) {
+        console.error('Weather fetch error:', err);
+      } finally {
+        setLoading(false);
+      }
     }
-  };
 
   useEffect(() => {
     fetchWeather(selectedDistrict);
@@ -131,7 +131,7 @@ export const WeatherWidget: React.FC<WeatherWidgetProps> = () => {
                 <span>Recommended Activities in {weatherData.district} Today</span>
               </h4>
               <ul className="space-y-2 text-xs sm:text-sm text-slate-200">
-                {weatherData.recommendedActivities.map((act, i) => (
+                {(weatherData.recommendedActivities || []).map((act, i) => (
                   <li key={i} className="flex items-center space-x-2.5 p-2.5 rounded-xl bg-white/5 border border-white/10">
                     <span className="w-2 h-2 rounded-full bg-amber-400 flex-shrink-0" />
                     <span>{act}</span>
@@ -147,7 +147,7 @@ export const WeatherWidget: React.FC<WeatherWidgetProps> = () => {
                 <span>Top Spot Suggestions</span>
               </h4>
               <div className="flex flex-wrap gap-2">
-                {weatherData.placesToVisitNow.map((place, i) => (
+                {(weatherData.placesToVisitNow || []).map((place, i) => (
                   <span key={i} className="px-3.5 py-1.5 rounded-xl bg-white/10 text-slate-200 text-xs font-bold border border-white/15">
                     📍 {place}
                   </span>

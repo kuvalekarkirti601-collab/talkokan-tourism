@@ -24,7 +24,7 @@ let enquiriesList: Enquiry[] = [
     phone: "+91 98201 45678",
     numTravelers: 4,
     travelDates: "2026-10-15 to 2026-10-18",
-    preferredDistrict: "Sindhudurg",
+    preferredDistrict: "Kankavali",
     message: "Looking for a 3-day family trip to Tarkarli with scuba diving and house boat stay.",
     status: "New",
     createdAt: new Date().toISOString()
@@ -36,7 +36,7 @@ let enquiriesList: Enquiry[] = [
     phone: "+91 97654 32109",
     numTravelers: 2,
     travelDates: "2026-09-02 to 2026-09-05",
-    preferredDistrict: "Ratnagiri",
+    preferredDistrict: "Malvan",
     message: "Planning Ganpatipule and Velas turtle beach visit during Ganesh festival season.",
     status: "Contacted",
     createdAt: new Date(Date.now() - 86400000 * 2).toISOString()
@@ -169,10 +169,23 @@ async function startServer() {
   });
 
   // WEATHER API
+   // WEATHER API
   app.get("/api/weather", (req: Request, res: Response) => {
-    const district = (req.query.district as string) || "Sindhudurg";
-    const data = DEFAULT_WEATHER_DATA[district] || DEFAULT_WEATHER_DATA["Sindhudurg"];
-    res.json(data);
+    const requested = ((req.query.district as string) || "").trim().toLowerCase();
+
+    const allData = (DEFAULT_WEATHER_DATA || {}) as Record<string, any>;
+    const keys = Object.keys(allData);
+
+    // Capital / small letters cha farak nako (Malvan = malvan)
+    const matchedKey =
+      keys.find((k) => k.toLowerCase() === requested) || keys[0];
+
+    if (!matchedKey) {
+      res.status(404).json({ error: "No weather data available" });
+      return;
+    }
+
+    res.json({ district: matchedKey, ...allData[matchedKey] });
   });
 
   // BUDGET CALCULATOR LOGIC

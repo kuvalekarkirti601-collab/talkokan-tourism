@@ -8,17 +8,16 @@ import { KokanMap } from './components/KokanMap';
 import { ItineraryPlanner } from './components/ItineraryPlanner';
 import { BudgetCalculator } from './components/BudgetCalculator';
 import { CulturalHub } from './components/CulturalHub';
-import { WeatherWidget } from './components/WeatherWidget';
-import { AiLocalGuideModal } from './components/AiLocalGuideModal';
+
 import EnquiryModal from "./components/EnquiryModal";
 
 import { AdminDashboard } from './components/AdminDashboard';
 import { Destination, FoodItem, Festival, AdminUser } from './types';
-import { MapPin, Compass, Sparkles, Filter, RefreshCw } from 'lucide-react';
+import { MapPin, RefreshCw } from 'lucide-react';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>('destinations');
-  
+
   // Filters
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedDistrict, setSelectedDistrict] = useState<string>('All');
@@ -34,7 +33,6 @@ export default function App() {
   const [selectedDestinationModal, setSelectedDestinationModal] = useState<Destination | null>(null);
   const [mapFocusDestination, setMapFocusDestination] = useState<Destination | null>(null);
   const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState<boolean>(false);
-  const [isAiGuideOpen, setIsAiGuideOpen] = useState<boolean>(false);
 
   // Admin User
   const [adminUser, setAdminUser] = useState<AdminUser | null>(() => {
@@ -101,7 +99,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-slate-950 via-slate-900 to-teal-950 text-slate-100 flex flex-col font-sans relative overflow-x-hidden selection:bg-teal-500/30 selection:text-teal-200">
-      
+
       {/* Subtle Background Glow Orbs for Frosted Glass Effect */}
       <div className="fixed top-0 left-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
       <div className="fixed top-1/3 right-10 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
@@ -112,7 +110,6 @@ export default function App() {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         onOpenEnquiry={() => setIsEnquiryModalOpen(true)}
-        onOpenAiGuide={() => setIsAiGuideOpen(true)}
         isAdminLoggedIn={!!adminUser}
         onOpenAdmin={() => setActiveTab('admin')}
       />
@@ -128,17 +125,16 @@ export default function App() {
           setSelectedCategory={setSelectedCategory}
           onNavigateToPlanner={() => setActiveTab('planner')}
           onNavigateToBudget={() => setActiveTab('budget')}
-          onOpenAiGuide={() => setIsAiGuideOpen(true)}
         />
       )}
 
       {/* Main Content Area */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
-        
+
         {/* TAB 1: DESTINATIONS CATALOGUE */}
         {activeTab === 'destinations' && (
           <section className="space-y-8">
-            
+
             {/* Section Bar */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-white/10 pb-4 backdrop-blur-sm">
               <div>
@@ -221,12 +217,7 @@ export default function App() {
           <CulturalHub foodList={foodList} festivalList={festivalList} />
         )}
 
-        {/* TAB 6: WEATHER & SEA GUIDE */}
-        {activeTab === 'weather' && (
-          <WeatherWidget />
-        )}
-
-        {/* TAB 7: ADMIN DASHBOARD */}
+        {/* TAB 6: ADMIN DASHBOARD */}
         {activeTab === 'admin' && (
           <AdminDashboard
             destinations={destinations}
@@ -245,11 +236,6 @@ export default function App() {
         onClose={() => setSelectedDestinationModal(null)}
         onFocusOnMap={handleFocusOnMap}
         onOpenEnquiry={() => setIsEnquiryModalOpen(true)}
-      />
-
-      <AiLocalGuideModal
-        isOpen={isAiGuideOpen}
-        onClose={() => setIsAiGuideOpen(false)}
       />
 
       <EnquiryModal

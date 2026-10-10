@@ -3,8 +3,8 @@ export type DistrictName =
   | 'malvan'
   | 'devgad'
   | 'dodamarg'
-    'kudal'
-    'sawanwadi'  
+  | 'kudal'
+   | 'sawanwadi'  
   | 'Vaibhavvadi'
 'vengurla';
 

@@ -236,7 +236,7 @@ export const Footer: React.FC<FooterProps> = ({
 
           <p className="flex items-center mt-2 md:mt-0 space-x-1">
             <span>
-              Designed for Maharashtra Kokan Tourism with
+              Designed for Maharashtra Kokan Tourism by kirti kuvalekar
             </span>
 
             <Heart className="w-3.5 h-3.5 text-rose-500 fill-current" />

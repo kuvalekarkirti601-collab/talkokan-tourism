@@ -9,11 +9,11 @@ interface ItineraryPlannerProps {
 export const ItineraryPlanner: React.FC<ItineraryPlannerProps> = ({ onOpenEnquiry }) => {
   const [daysCount, setDaysCount] = useState<number>(3);
   const [travelStyle, setTravelStyle] = useState<string>('Relaxation & Beaches');
-  const [selectedDistricts, setSelectedDistricts] = useState<DistrictName[]>(['Sindhudurg', 'Ratnagiri']);
+  const [selectedDistricts, setSelectedDistricts] = useState<DistrictName[]>(['Sindhudurg', 'Malvan']);
   const [loading, setLoading] = useState<boolean>(false);
   const [generatedPlan, setGeneratedPlan] = useState<ItineraryPlan | null>(null);
 
-  const districtsList: DistrictName[] = ['Sindhudurg', 'Ratnagiri', 'Raigad', 'Palghar'];
+  const districtsList: DistrictName[] = ['Kankavli', 'Malvan', 'Swantwadi', 'Devgad','vengurla','kudal','Dodamarg','Vaibhavvadi'];
 
   const stylesList = [
     { name: 'Relaxation & Beaches', desc: 'Sunset walks, clean sand shores, coconut groves & sea breezes' },

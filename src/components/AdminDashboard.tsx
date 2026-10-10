@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Shield, Lock, Plus, Trash2, Edit3, CheckCircle2, Clock, Mail, Phone, Calendar, LogOut, Loader2, Sparkles } from 'lucide-react';
-import { Destination, Enquiry, AdminUser, DistrictName, DestinationCategory, SeasonType } from '../types';
+import { Destination, Enquiry, AdminUser, DistrictName, DestinationCategory } from '../types';
 
 interface AdminDashboardProps {
   destinations: Destination[];
